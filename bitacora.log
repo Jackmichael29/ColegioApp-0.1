@@ -2040,3 +2040,19 @@
   <message>Column 'alumno_id' not found.****[Ljava.lang.StackTraceElement;@58fdd99</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-19T15:19:23.930690600Z</date>
+  <millis>1684509563930</millis>
+  <nanos>690600</nanos>
+  <sequence>0</sequence>
+  <logger>global</logger>
+  <level>SEVERE</level>
+  <class>Utilities.Bitacora</class>
+  <method>registrar</method>
+  <thread>24</thread>
+  <message>Cannot invoke "java.sql.Connection.prepareCall(String)" because "this.con" is null****[Ljava.lang.StackTraceElement;@5146e38c</message>
+</record>
+</log>
