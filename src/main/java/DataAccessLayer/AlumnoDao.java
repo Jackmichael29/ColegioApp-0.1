@@ -206,7 +206,7 @@ public class AlumnoDao {
                 alumno = new Alumno();
                 alumno.setAlumno_id(rs.getInt("alumno_id"));
                 alumno.setDni(rs.getString("dni"));
-                alumno.setApellidosNombres(rs.getString("alumno"));             
+                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));             
             }
             
         }catch (Exception e) {         
@@ -245,12 +245,7 @@ public class AlumnoDao {
                 alumno = new Alumno();
                 alumno.setAlumno_id(rs.getInt("alumno_id"));
                 alumno.setDni(rs.getString("dni"));
-                alumno.setApellido_paterno(rs.getString("apellido_paterno"));
-                alumno.setApellido_materno(rs.getString("apellido_materno"));
-                alumno.setNombres(rs.getString("nombres"));
-                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));
-                alumno.setFecha_nacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
-                alumno.setCorreo_electrico(rs.getString("correo_electronico"));                             
+                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));                   
             }
             
         } catch (Exception e) {         
