@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author xbest
  */
-@WebServlet(name = "AlumnoController", urlPatterns = {"/AlumnoController"})
+@WebServlet(name = "AlumnoController", urlPatterns = {"/Alumno"})
 public class AlumnoController extends HttpServlet {
 
     static final String PATH_FORM_NEW="/View/Alumno/alumno-form-new.jsp";
