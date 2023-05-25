@@ -1,7 +1,7 @@
 <%-- 
     Document   : nav
-    Created on : 3 mar. 2023, 20:06:39
-    Author     : walter
+    Created on : 25 may. 2023, 10:59:23
+    Author     : xbest
 --%>
 
   
@@ -14,10 +14,12 @@
             <li><a href="">Matricula</a></li>  
             <li><a href="">Reportes</a></li> 
             <li><a href="">Curso</a></li>
+            <li><a href="">Pago</a></li>
         </c:if>
             
         <c:if test="${sessionScope.rol=='docente'}">             
             <li><a href="${pageContext.request.contextPath}/Nota?action=index">Notas</a></li>
+            <li><a href="${pageContext.request.contextPath}/Nota?action=index">Asistencia Alumnos</a></li>
         </c:if>  
             
         <c:if test="${sessionScope.rol=='admin'}">  
@@ -25,7 +27,9 @@
             <li><a href="">Matricula</a></li>  
             <li><a href="">Reportes</a></li> 
             <li><a href="">Curso</a></li>        
-            <li><a href="">Notas</a></li>                   
+            <li><a href="">Notas</a></li>   
+            <li><a href="">Pagos</a></li>
+            <li><a href="">Asistencia Docentes</a></li>
         </c:if>        
         
         </ul>

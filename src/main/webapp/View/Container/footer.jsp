@@ -1,18 +1,17 @@
 <%-- 
     Document   : footer
-    Created on : 3 mar. 2023, 20:11:00
-    Author     : walter
+    Created on : 25 may. 2023, 10:59:23
+    Author     : xbest
 --%>
-
  
     
 <div class="row w-100">
     <div class="col-12 py-3">
         <footer> 
-        <div>©2020 - www.sanpedrohuancayo.com. Todos los derechos reservados. </div>
+        <div>©2020 - www.unicomlamolina.com. Todos los derechos reservados. </div>
         <div>NUESTRO CAMPUS</div>
-        <div>Dirección: Calle Real 892 Huancayo</div>
-        <div>Telefonos: (064) 235689 - (064) 235612</div>   
+        <div>Dirección: - San Pedro</div>
+        <div>Telefonos: </div>   
         </footer>
     </div>
 </div>
