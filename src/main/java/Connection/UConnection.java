@@ -36,7 +36,7 @@ public class UConnection{
     Connection cn= null;
         try {    
             Class.forName("com.mysql.cj.jdbc.Driver");
-            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/colegio","root","");            
+            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/colegio","root","root");//solo para version mia            
         }
            catch (Exception e) {           
                System.out.println(String.valueOf(e));

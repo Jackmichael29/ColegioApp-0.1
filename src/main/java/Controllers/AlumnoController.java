@@ -90,15 +90,29 @@ public class AlumnoController extends HttpServlet {
     
     private void index(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, Exception {
+//          response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet AlumnoController</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet AlumnoController at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
         
-        String  apeNom=request.getParameter("apellidosNombres");        
         
-        AlumnoBO alumnoBO= new AlumnoBO(); 
-        ArrayList<Alumno> alumnos=alumnoBO.buscarPorAlumno(apeNom);
-        request.setAttribute("alumnos", alumnos);
-        
+//        String  apeNom=request.getParameter("apellidosNombres");        
+//        
+//        AlumnoBO alumnoBO= new AlumnoBO(); 
+//        ArrayList<Alumno> alumnos=alumnoBO.buscarPorAlumno(apeNom);
+//        request.setAttribute("alumnos", alumnos);
+//        
         getServletContext().getRequestDispatcher(PATH_INDEX).forward(request, response);
-        
+//        
     }
     
     
