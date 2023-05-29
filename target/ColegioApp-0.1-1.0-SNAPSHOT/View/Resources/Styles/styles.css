@@ -1,0 +1,42 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : May 28, 2023, 11:51:54 PM
+    Author     : xbest
+*/
+
+.banner{
+    display: inline-block;
+}
+
+.lema{
+    font-size: 20px;
+    text-align: center;
+}
+
+nav ul{
+    list-style: none;
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+body{
+    background-color: #e5e4ec;
+    font-family: 'Markazi Text', sans-serif;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+footer{
+    text-align: center;
+    margin-top: 25px;
+}

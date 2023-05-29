@@ -5,6 +5,7 @@ C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessL
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\AlumnoDao.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\Docente.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Controllers\AlumnoController.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\PagoVariosBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\DocenteCursoDAO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\PagoVariosDAO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\CursoBO.java
@@ -18,10 +19,10 @@ C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\PRUEBA2.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\ApoderadoDAO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\NotasDAO.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\UsuarioBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\HistorialNotas.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\PRUEBA3.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\PRUEBA6.java
-C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\Docente_CursoDAO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\AsistenciaAlumnoBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\AlumnoBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\pagoPensiones.java
@@ -35,13 +36,17 @@ C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Controlle
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\DocenteCursoBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\AsistenciaDocente.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\DocenteCurso.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\NotasBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\com\utp\colegiowebapp\resources\JakartaEE91Resource.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\alumnoApoderado.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\AsistenciaDocenteBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\AreaBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\AreaDAO.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\PagoMatriculaBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Controllers\UsuarioController.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\pagoMatricula.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\DocenteBO.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\MatriculaBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Connection\UConnection.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\AsistenciaAlumno.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\DocenteDAO.java
@@ -54,5 +59,8 @@ C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\PRUEBA4.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\AsistenciaDocenteDAO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\ApoderadoBO.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\HistorialNotasBO.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\PruebaAlumno.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\CursoDAO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\Curso.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\PagoPensionBO.java

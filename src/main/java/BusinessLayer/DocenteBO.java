@@ -22,6 +22,15 @@ public class DocenteBO {
         }
     }
     
+    public Docente buscarPorDNI(String cadena) throws Exception{
+        try {
+            DocenteDAO docDAO = new DocenteDAO();
+            return docDAO.buscarPorDNI(cadena);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
     public Docente buscarPorId(int id) throws Exception{
         try {
             DocenteDAO docDAO = new DocenteDAO();

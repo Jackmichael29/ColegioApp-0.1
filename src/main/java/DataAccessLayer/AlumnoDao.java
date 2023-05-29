@@ -47,11 +47,10 @@ public class AlumnoDao {
             //alumno.setAlumno_id(csmt.getInt(1));
 
         } catch (Exception e) {
-
-            if (e.getMessage().contains("idx_alumno_dni")) {
+            if (e.getMessage().contains("dni")) {
                 throw new Exception("El DNI ingresado ya existe en la base de datos");
             }
-            if (e.getMessage().contains("idx_correo_electronico")) {
+            if (e.getMessage().contains("correo_electronico")) {
                 throw new Exception("El Correo electrónico ingresado ya existe en la base de datos");
             }
             throw e;
@@ -157,15 +156,13 @@ public class AlumnoDao {
                 alumno.setDni(rs.getString("dni"));
                 //alumno.setApellidosNombres(rs.getString("apellidos_nombres"));
                 String[] nombres = rs.getString("apellidos_nombres").replace(",", "").split(" ");
-                System.out.println(rs.getString("apellidos_nombres"));
+                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));
                 alumno.setApellido_paterno(nombres[0]);
                 alumno.setApellido_materno(nombres[1]);
                 
                 if (nombres.length < 4) alumno.setNombres(nombres[2]);
                 else alumno.setNombres(nombres[2]+" "+nombres[3]); 
-                
                 alumno.setCorreo_electrico(rs.getString("correo_electronico"));
-                
                 alumno.setFecha_nacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
                 
                 alumnos.add(alumno);
@@ -173,6 +170,7 @@ public class AlumnoDao {
             
         }catch (Exception e) {         
             Bitacora.registrar(e);
+            System.out.println(e);
             throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
         }finally{
             try {
@@ -206,7 +204,7 @@ public class AlumnoDao {
                 alumno = new Alumno();
                 alumno.setAlumno_id(rs.getInt("alumno_id"));
                 alumno.setDni(rs.getString("dni"));
-                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));             
+                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));               
             }
             
         }catch (Exception e) {         
@@ -231,7 +229,7 @@ public class AlumnoDao {
         Connection con=null;
         CallableStatement cstm = null;  
         ResultSet rs=null;
-        
+         System.out.println("Somos usados ID");
         try {            
             con=UConnection.getConnection();
             String sql="";            
@@ -245,7 +243,18 @@ public class AlumnoDao {
                 alumno = new Alumno();
                 alumno.setAlumno_id(rs.getInt("alumno_id"));
                 alumno.setDni(rs.getString("dni"));
-                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));                   
+                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));  
+                
+                String[] nombres = rs.getString("apellidos_nombres").replace(",", "").split(" ");
+                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));
+                alumno.setApellido_paterno(nombres[0]);
+                alumno.setApellido_materno(nombres[1]);
+                
+                if (nombres.length < 4) alumno.setNombres(nombres[2]);
+                else alumno.setNombres(nombres[2]+" "+nombres[3]); 
+                
+                alumno.setCorreo_electrico(rs.getString("correo_electronico"));
+                alumno.setFecha_nacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
             }
             
         } catch (Exception e) {         

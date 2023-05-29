@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package JavaBean;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author LAB-USR-HUAN-A0305
@@ -14,6 +18,16 @@ public class Curso {
     private char grado;
     private int area_id;
     private Area area;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
 
     public Curso() {
     }
@@ -30,9 +44,10 @@ public class Curso {
         return nombre;
     }
 
-    public void setNombre(String nombre) throws Exception{
+    public void setNombre(String nombre){
         if( (nombre==null) || (nombre.isEmpty()) ){
-            throw new Exception("El campo Nombre no puede estar vacio");
+            errores.put("nombres","El campo Nombre no puede estar vacio");
+            return;
         }
         this.nombre = nombre;
     }
@@ -41,9 +56,10 @@ public class Curso {
         return grado;
     }
 
-    public void setGrado(char grado) throws Exception{
+    public void setGrado(char grado){
         if (grado == ' '){
-            throw new Exception("El campo grado no puede estar vacio");
+            errores.put("grado","El campo grado no puede estar vacio");
+            return;
         }
         this.grado = grado;
     }    
@@ -52,9 +68,10 @@ public class Curso {
         return nivel;
     }
 
-    public void setNivel(char nivel)throws Exception{
+    public void setNivel(char nivel){
         if (nivel == ' '){
-            throw new Exception("El campo nivel no puede estar vacio");
+            errores.put("nivel","El campo nivel no puede estar vacio");
+            return;
         }
         this.nivel = nivel;
     }

@@ -5,6 +5,8 @@
 package JavaBean;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -19,6 +21,16 @@ public class Matricula {
     private char nivel;
     private char turno;
     private int alumno_id;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
 
     public Matricula(){
     }
@@ -35,9 +47,9 @@ public class Matricula {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) throws Exception{
+    public void setFecha(LocalDate fecha){
         if(fecha == null || fecha.equals(LocalDate.MIN) ){
-            throw new Exception("La fecha está vacía o no ha sido inicializada");
+            errores.put("fecha","La fecha está vacía o no ha sido inicializada");
         }
         this.fecha = fecha;
     }
@@ -46,9 +58,9 @@ public class Matricula {
         return grado;
     }
 
-    public void setGrado(char grado) throws Exception{
+    public void setGrado(char grado){
         if(grado == ' '){
-            throw new Exception("El campo grado no puede estar vacio");
+            errores.put("grado","El campo grado no puede estar vacio");
         }
         this.grado = grado;
     }
@@ -57,9 +69,9 @@ public class Matricula {
         return nivel;
     }
 
-    public void setNivel(char nivel) throws Exception{
+    public void setNivel(char nivel){
         if(nivel == ' '){
-            throw new Exception("El campo nivel no puede estar vacio");
+            errores.put("nivel","El campo nivel no puede estar vacio");
         }
         this.nivel = nivel;
     }
@@ -68,9 +80,9 @@ public class Matricula {
         return turno;
     }
 
-    public void setTurno(char turno) throws Exception{
+    public void setTurno(char turno){
         if(turno == ' '){
-            throw new Exception("El campo turno no puede estar vacio");
+            errores.put("turno","El campo turno no puede estar vacio");
         }
         this.turno = turno;
     }

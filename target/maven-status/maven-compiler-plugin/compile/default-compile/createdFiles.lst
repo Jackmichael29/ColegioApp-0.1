@@ -1,6 +1,6 @@
+BusinessLayer\PagoPensionBO.class
 DataAccessLayer\AsistenciaAlumnoDAO.class
 JavaBean\Alumno.class
-DataAccessLayer\Docente_CursoDAO.class
 DataAccessLayer\AsistenciaDocenteDAO.class
 DataAccessLayer\NotasDAO.class
 JavaBean\alumnoApoderado.class
@@ -14,6 +14,7 @@ JavaBean\PRUEBA5.class
 DataAccessLayer\PagoPensionDAO.class
 DataAccessLayer\PagoVariosDAO.class
 BusinessLayer\AsistenciaDocenteBO.class
+BusinessLayer\MatriculaBO.class
 JavaBean\pagoVarios.class
 JavaBean\PRUEBA2.class
 JavaBean\HistorialNotas.class
@@ -21,14 +22,20 @@ BusinessLayer\CursoBO.class
 JavaBean\Area.class
 Connection\UConnection.class
 DataAccessLayer\AlumnoDao.class
+BusinessLayer\HistorialNotasBO.class
+BusinessLayer\PagoVariosBO.class
 com\utp\colegiowebapp\JakartaRestConfiguration.class
 BusinessLayer\DocenteCursoBO.class
+BusinessLayer\PagoMatriculaBO.class
 DataAccessLayer\CursoDAO.class
+BusinessLayer\DocenteBO.class
 DataAccessLayer\AreaDAO.class
 JavaBean\AsistenciaAlumno.class
 BusinessLayer\AreaBO.class
 DataAccessLayer\MatriculaDAO.class
+BusinessLayer\UsuarioBO.class
 JavaBean\PRUEBA6.class
+JavaBean\PruebaAlumno.class
 DataAccessLayer\HistorialNotasDAO.class
 JavaBean\Matricula.class
 JavaBean\PRUEBA3.class
@@ -55,4 +62,5 @@ BusinessLayer\AlumnoApoderadoBO.class
 JavaBean\PRUEBA4.class
 JavaBean\AsistenciaDocente.class
 DataAccessLayer\PagoMatriculaDAO.class
+BusinessLayer\NotasBO.class
 DataAccessLayer\UsuarioDAO.class

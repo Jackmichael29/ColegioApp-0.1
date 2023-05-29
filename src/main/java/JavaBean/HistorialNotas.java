@@ -4,6 +4,9 @@
  */
 package JavaBean;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author LAB-USR-HUAN-A0305
@@ -13,22 +16,19 @@ public class HistorialNotas {
     private int alumno_id;
     private int curso_id;
     private double promedio;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
    
     public HistorialNotas(){
         
-    }
-    
-    public HistorialNotas(int historial_id, int alumno_id, int curso_id) {
-        this.historial_id = historial_id;
-        this.alumno_id = alumno_id;
-        this.curso_id = curso_id;
-    }
-
-    public HistorialNotas(int historial_id, int alumno_id, int curso_id, int promedio) {
-        this.historial_id = historial_id;
-        this.alumno_id = alumno_id;
-        this.curso_id = curso_id;
-        this.promedio = promedio;
     }
     
     public int getHistorial_id() {
@@ -61,7 +61,7 @@ public class HistorialNotas {
 
     public void setPromedio(double promedio){
         if(promedio<0){
-            System.out.println("El promedio debe ser mayor o igual a 0");
+            errores.put("promedio","El promedio debe ser mayor o igual a 0");
         }else{
             this.promedio = promedio;
         }

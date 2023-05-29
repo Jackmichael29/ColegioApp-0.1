@@ -45,6 +45,9 @@ public class CursoDAO {
            }           
         } catch (Exception e) {
             Bitacora.registrar(e);
+            if (e.getMessage().contains("fk_curso_area_id")) {
+                throw new Exception("El id del area no es válido");
+            }
             throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
         }finally{
             try {

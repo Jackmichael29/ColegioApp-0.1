@@ -8,10 +8,15 @@
  
     <div class="col-12 py-3">
         <header>   
-        <img src="${pageContext.request.contextPath}/View/Resources/img/logotipo.png" alt="logotipo" width="100" height="100">
-        <div>
-            Colegio Unicom La Molina, Educando a los lideres del Manana.        
-        </div>
+            <div class="banner">
+                <div>
+                    <img src="${pageContext.request.contextPath}/View/Resources/img/logo.PNG" alt="logotipo" width="100" height="100">
+                </div>
+                <div class="lema">
+                    Colegio Unicom La Molina, Educando a los lideres del Manana.
+                </div>
+            </div>
+        
         <div>
             ${sessionScope.rol}            
         </div>

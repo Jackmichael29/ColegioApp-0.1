@@ -5,6 +5,9 @@
 package JavaBean;
 
 import Utilities.Validator;
+import at.favre.lib.crypto.bcrypt.BCrypt;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -20,10 +23,31 @@ public class Usuario {
     private String clave;
     private String rol;
     private String apellidosNombres;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
 
     public Usuario(){
     }
 
+    public Usuario(String nombres, String apellido_materno, String apellido_paterno, String dni, String clave, String rol) {
+        this.nombres = nombres;
+        this.apellido_materno = apellido_materno;
+        this.apellido_paterno = apellido_paterno;
+        this.dni = dni;
+        this.clave = clave;
+        this.rol = rol;
+    }
+
+    
+    
     public int getUsuario_id() {
         return usuario_id;
     }
@@ -36,14 +60,15 @@ public class Usuario {
         return nombres;
     }
 
-    public void setNombres(String nombres) throws Exception {
+    public void setNombres(String nombres) {
         if (nombres == null || nombres.isEmpty()) {
-            throw new Exception("El campo Nombres no puede estar vacío");
-        } else {
-            if (nombres.length() > 20) {
-                throw new Exception("El campo Nombres no puede sobrepasar los 20 caracteres");
-            }
+            errores.put("nombres","El Nombre no puede estar vacío");
         }
+        
+        if (nombres.length() > 20) {
+            errores.put("nombres","El Nombre no puede exxceder los 20 caracteres");
+        }
+        
         this.nombres = nombres;
     }
 
@@ -51,14 +76,15 @@ public class Usuario {
         return apellido_materno;
     }
 
-    public void setApellido_materno(String apellido_materno) throws Exception {
+    public void setApellido_materno(String apellido_materno){
         if (apellido_materno == null || apellido_materno.isEmpty()) {
-            throw new Exception("El campo Apellido Materno no puede estar vacío");
-        } else {
-            if (apellido_materno.length() > 20) {
-                throw new Exception("El campo Apellido Materno no puede sobrepasar los 20 caracteres");
-            }
+            errores.put("apellido_materno","El Apellido Materno no puede estar vacío");
         }
+        
+        if (apellido_materno.length() > 20) {
+            errores.put("apellido_materno","El Apellido Materno no puede exceder los 20 caracteres");
+        }
+        
         this.apellido_materno = apellido_materno;
     }
 
@@ -66,14 +92,15 @@ public class Usuario {
         return apellido_paterno;
     }
 
-    public void setApellido_paterno(String apellido_paterno) throws Exception {
+    public void setApellido_paterno(String apellido_paterno){
         if (apellido_paterno == null || apellido_paterno.isEmpty()) {
-            throw new Exception("El campo Apellido Paterno no puede estar vacío");
-        } else {
-            if (apellido_paterno.length() > 20) {
-                throw new Exception("El campo Apellido Paterno no puede sobrepasar los 20 caracteres");
-            }
+            errores.put("apellido_paterno","El Apellido Paterno no puede estar vacío");
         }
+        
+        if (apellido_paterno.length() > 20) {
+            errores.put("apellido_paterno","El Apellido Paterno no puede exceder los 20 caracteres");
+        }
+        
         this.apellido_paterno = apellido_paterno;
     }
 
@@ -83,12 +110,13 @@ public class Usuario {
 
     public void setDni(String dni) throws Exception {
         if (dni == null || dni.isEmpty()) {
-            throw new Exception("El campo DNI no puede estar en blanco");
-        } else {
-            if (!Validator.isDNI(dni)) {
-                throw new Exception("Error en el formato de DNI");
-            }
+            errores.put("dni","El campo DNI no puede estar en blanco");
         }
+        
+        if (!Validator.isDNI(dni)) {
+            errores.put("dni","Error en el formato de DNI");
+        }
+        
         this.dni = dni;
     }
 
@@ -96,14 +124,15 @@ public class Usuario {
         return clave;
     }
 
-    public void setClave(String clave) throws Exception {
+    public void setClave(String clave){
         if (clave == null || clave.isEmpty()) {
-            throw new Exception("El campo Clave no puede estar vacío");
-        } else {
-            if (clave.length() < 8 || clave.length() > 20) {
-                throw new Exception("La longitud de la Clave debe estar entre 8 y 20 caracteres");
-            }
+            errores.put("clave","El campo Clave no puede estar vacío");
         }
+        
+        if (clave.length() < 8 || clave.length() > 20) {
+            errores.put("claveLen","La longitud de la Clave debe estar entre 8 y 20 caracteres");
+        }
+        
         this.clave = clave;
     }
 
@@ -111,9 +140,9 @@ public class Usuario {
         return rol;
     }
 
-    public void setRol(String rol) throws Exception{
-        if (( rol == null ) && ( rol.isEmpty() )) {
-            throw new Exception("El campo rol esta vacio");
+    public void setRol(String rol){
+        if (( rol == null ) || ( rol.isEmpty() )) {
+            errores.put("rol","El campo rol esta vacio");
         }
         this.rol = rol;
     }

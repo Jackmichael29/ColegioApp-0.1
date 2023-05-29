@@ -5,6 +5,8 @@
 package JavaBean;
 
 import Utilities.Validator;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -18,6 +20,16 @@ public class Apoderado {
     private String dni;
     
     private String contacto;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
     
     public Apoderado() {
     }
@@ -34,16 +46,15 @@ public class Apoderado {
         return nombres;
     }
 
-    public void setNombres(String nombre) throws Exception {
+    public void setNombres(String nombre){
         if( (nombre==null) || (nombre.isEmpty()) ){
-            throw new Exception("El campo Nombres no puede estar vacío");           
+            errores.put("nombres", "El campo Nombres no puede estar vacío");
+            return;        
         }
-        else{
-            if(nombre.length() > 20){
-                throw new Exception("El campo Nombres no puede sobrepasar los 20 caracteres");
-            }
+        if(nombre.length() > 20){
+            errores.put("nombres", "El campo Nombres no puede sobrepasar los 20 caracteres");
+            return;   
         }
-        
         this.nombres = nombre;
     }
 
@@ -51,15 +62,14 @@ public class Apoderado {
         return apellido_materno;
     }
 
-    public void setApellido_materno(String apellido_materno) throws Exception{
-        if( (apellido_materno==null) || (apellido_materno.isEmpty()) ){
-            throw new Exception("El campo Apellido Materno no puede estar vacío");
-            
+    public void setApellido_materno(String apellido_materno){
+        if( apellido_materno==null || apellido_materno.isEmpty()){
+            errores.put("apellido_materno", "El campo Apellido Materno no puede estar vacío");
+            return;
         }
-        else{
-            if(apellido_materno.length() > 20){
-                throw new Exception( "El campo Apellido Materno no puede sobrepasar los 20 caracteres");
-            }
+        if(apellido_materno.length() > 20){
+            errores.put("apellido_materno", "El campo Apellido Materno no puede sobrepasar los 20 caracteres");
+            return;
         }
         this.apellido_materno = apellido_materno;
     }
@@ -68,18 +78,15 @@ public class Apoderado {
         return apellido_paterno;
     }
 
-    public void setApellido_paterno(String apellido_paterno) throws Exception{
-        //no puede ser vacio
-        if( (apellido_paterno==null) || (apellido_paterno.isEmpty()) ){
-            throw new Exception("El campo Apellido Paterno no puede estar vacío");
-            
+    public void setApellido_paterno(String apellido_paterno){
+        if( apellido_paterno==null || apellido_paterno.isEmpty()){
+            errores.put("apellido_paterno", "El campo Apellido Paterno no puede estar vacío");
+            return;
         }
-        else{
-            if(apellido_paterno.length() > 20){
-                throw new Exception("El campo Apellido Paterno no puede sobrepasar los 20 caracteres");
-            }
-        }
-        
+        if(apellido_paterno.length() > 20){
+            errores.put("apellido_paterno", "El campo Apellido Paterno no puede sobrepasar los 20 caracteres");
+            return;
+        }     
         this.apellido_paterno = apellido_paterno;
     }
 
@@ -87,14 +94,16 @@ public class Apoderado {
         return dni;
     }
 
-    public void setDni(String dni) throws Exception{
+    public void setDni(String dni){
         if(dni==null ||dni.isEmpty()){
-           throw new Exception("El campo DNI no puede estar vacío"); 
-        }else{
-            if(!Validator.isDNI(dni)){
-              throw new Exception("Error en el formato de DNI");
-            }
-        }        
+            errores.put("dni", "El campo DNI no puede estar vacío");
+            return;
+        }
+            
+        if(!Validator.isDNI(dni)){
+            errores.put("dni", "Error en el formato de DNI");
+            return;
+        }       
         this.dni = dni;
     }
     
@@ -102,11 +111,14 @@ public class Apoderado {
         return contacto;
     }
 
-    public void setContacto(String contacto) throws Exception{
+    public void setContacto(String contacto){
         if(contacto==null ||contacto.isEmpty()){
-           throw new Exception("El campo Contacto no puede estar en blanco"); 
-        }else if(!Validator.isNumeroTelefono(contacto)){
-           throw new Exception("Error en el formato Contacto"); 
+            errores.put("contacto", "El campo Contacto no puede estar en blanco");
+            return;
+        }
+        if(!Validator.isNumeroTelefono(contacto)){
+            errores.put("contacto", "Error en el formato Contacto");
+            return; 
         }
         this.contacto = contacto;
     }
