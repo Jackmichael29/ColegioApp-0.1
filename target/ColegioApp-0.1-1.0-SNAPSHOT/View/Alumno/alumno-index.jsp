@@ -49,18 +49,20 @@ import= "JavaBean.Alumno, java.util.ArrayList"
                 <th scope="col">codigo</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Apellidos y Nombres</th>
+                <th scope="col">Correo Electronico</th>
                 <th scope="col">Operaciones</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${alumnos}" var="a">
             <tr>
-                <td>${a.alumnoId}</td>
+                <td>${a.alumno_id}</td>
                 <td>${a.dni}</td>
                 <td>${a.apellidosNombres}</td>        
+                <td>${a.correo_electrico}</td>        
                 <td>
-                <a href="${pageContext.request.contextPath}/Alumno?action=edit&id=${a.alumnoId}" class="btn btn-secondary" role="button">Editar</a>                
-                <a href="#delete" class="btn btn-secondary" role="button" data-id="${a.alumnoId}">Eliminar</a>
+                <a href="${pageContext.request.contextPath}/Alumno?action=edit&id=${a.alumno_id}" class="btn btn-secondary" role="button">Editar</a>                
+                <a href="#delete" class="btn btn-secondary" role="button" data-id="${a.alumno_id}">Eliminar</a>
                 </td>                    
             </tr>
             </c:forEach>

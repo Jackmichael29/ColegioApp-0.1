@@ -4,6 +4,9 @@
  */
 package JavaBean;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author LAB-USR-HUAN-A0305
@@ -14,6 +17,16 @@ public class DocenteCurso {
     private Area area;
     private Curso curso;
     private char turno;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
 
     public DocenteCurso() {
     }
@@ -40,7 +53,7 @@ public class DocenteCurso {
 
     public void setTurno(char turno) throws Exception{
         if(turno == ' '){
-            throw new Exception("El campo turno no puede estar vacio");
+            errores.put("turno","El campo turno no puede estar vacio");
         }
         this.turno = turno;
     }

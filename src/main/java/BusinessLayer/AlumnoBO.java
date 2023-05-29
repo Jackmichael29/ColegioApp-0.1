@@ -69,4 +69,14 @@ public class AlumnoBO {
         }
     }
 
+    
+    public ArrayList<Alumno> listar() throws Exception {
+
+        try {
+            AlumnoDao alumnoDAO = new AlumnoDao();
+            return alumnoDAO.buscarPorAlumno("");
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }

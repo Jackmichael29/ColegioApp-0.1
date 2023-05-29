@@ -144,10 +144,7 @@ public class UsuarioDAO {
             cstm.setString(2, usuario.getDni());            
             cstm.setString(3, usuario.getApellido_paterno());
             cstm.setString(4, usuario.getApellido_materno());
-            cstm.setString(5, usuario.getNombres());            
-            System.out.println("++++++++++");
-            System.out.println(usuario.getApellido_paterno());
-            System.out.println(String.valueOf(usuario.getUsuario_id()));
+            cstm.setString(5, usuario.getNombres());
             String claveEncriptada="";
             cstm.setString(6, claveEncriptada);
             
@@ -216,12 +213,16 @@ public class UsuarioDAO {
             cstm.setString(1, cadena);
          
             rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
-            
+            System.out.println("USUARIODAOOO");
             while(rs.next()){
                 usuario = new Usuario();
                 usuario.setUsuario_id(rs.getInt("usuario_id"));
                 usuario.setDni(rs.getString("dni"));
-                usuario.setApellidosNombres(rs.getString("apellidos_nombres"));
+                usuario.setApellido_paterno(rs.getString("apellido_paterno"));
+                usuario.setApellido_materno(rs.getString("apellido_materno"));
+                usuario.setNombres(rs.getString("nombres"));
+                usuario.setClave(rs.getString("clave"));
+                usuario.setRol(rs.getString("rol"));
                 
                 usuarios.add(usuario);
             }
@@ -259,9 +260,12 @@ public class UsuarioDAO {
             
             while(rs.next()){
                 usuario = new Usuario();
-                usuario.setUsuario_id(rs.getInt("usuario_id"));
-                usuario.setDni(rs.getString("dni"));
-                usuario.setApellidosNombres(rs.getString("apellidos_nombres"));             
+                System.out.println(rs.getString("apellido_paterno"));
+                usuario.setApellido_paterno(rs.getString("apellido_paterno"));             
+                usuario.setApellido_materno(rs.getString("apellido_materno"));             
+                usuario.setNombres(rs.getString("nombres"));
+                usuario.setClave(rs.getString("clave"));
+                usuario.setRol(rs.getString("rol"));           
             }
             
         }catch (Exception e) {         
@@ -303,6 +307,7 @@ public class UsuarioDAO {
                 usuario.setApellido_paterno(rs.getString("apellido_paterno"));
                 usuario.setApellido_materno(rs.getString("apellido_materno"));
                 usuario.setNombres(rs.getString("nombres"));
+                usuario.setClave(rs.getString("clave"));
                 usuario.setRol(rs.getString("rol"));
                                        
             }

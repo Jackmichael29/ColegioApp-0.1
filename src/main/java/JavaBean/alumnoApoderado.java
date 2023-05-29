@@ -4,6 +4,9 @@
  */
 package JavaBean;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author black
@@ -12,6 +15,16 @@ public class alumnoApoderado {
     private int alumno_id;
     private int apoderado_id;
     private String parentesco;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
 
     public alumnoApoderado() {
     }
@@ -38,7 +51,7 @@ public class alumnoApoderado {
 
     public void setParentesco(String parentesco) throws Exception{
         if (( parentesco == null ) && ( parentesco.isEmpty() )) {
-            throw new Exception("El campo parentesco esta vaico");
+            errores.put("parentesco","El campo parentesco esta vaico");
         }
         this.parentesco = parentesco;
     }

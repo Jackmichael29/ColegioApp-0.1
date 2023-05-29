@@ -90,29 +90,16 @@ public class AlumnoController extends HttpServlet {
     
     private void index(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, Exception {
-//          response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet AlumnoController</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet AlumnoController at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
+      
         
+        String  apeNom=request.getParameter("apellidosNombres");        
         
-//        String  apeNom=request.getParameter("apellidosNombres");        
-//        
-//        AlumnoBO alumnoBO= new AlumnoBO(); 
-//        ArrayList<Alumno> alumnos=alumnoBO.buscarPorAlumno(apeNom);
-//        request.setAttribute("alumnos", alumnos);
-//        
+        AlumnoBO alumnoBO= new AlumnoBO(); 
+        ArrayList<Alumno> alumnos=alumnoBO.buscarPorAlumno(apeNom);
+        request.setAttribute("alumnos", alumnos);
+    
         getServletContext().getRequestDispatcher(PATH_INDEX).forward(request, response);
-//        
+  
     }
     
     
@@ -156,26 +143,26 @@ public class AlumnoController extends HttpServlet {
         alumno.setNombres(request.getParameter("nombres"));
         
         try {
-            //alumno.setFecha_nacimiento(LocalDate.parse(request.getParameter("fechaNacimiento"),DateTimeFormatter.ofPattern("yyyy-MM-dd")) );
+            alumno.setFecha_nacimiento(LocalDate.parse(request.getParameter("fechaNacimiento"),DateTimeFormatter.ofPattern("yyyy-MM-dd")) );
         } catch (DateTimeParseException e) {
             alumno.setFecha_nacimiento(null);
         }        
         
         alumno.setCorreo_electrico(request.getParameter("correoElectronico"));
                  
-//        Map<String,String>errores = alumno.getErrores();
-//                   
-//        if(errores.isEmpty()){                
-//           AlumnoBO alumnoBO= new AlumnoBO();          
-//           alumnoBO.insertar(alumno);
-//           request.setAttribute("mensaje", "El registro fué insertado con éxito");  
-//           getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);
-//        }else{
-//            request.setAttribute("alumno", alumno);
-//            request.setAttribute("errores", errores);            
-//         
-//            getServletContext().getRequestDispatcher(PATH_FORM_NEW).forward(request, response);
-//        }
+        Map<String,String>errores = alumno.getErrores();
+                   
+        if(errores.isEmpty()){                
+           AlumnoBO alumnoBO= new AlumnoBO();          
+           alumnoBO.insertar(alumno);
+           request.setAttribute("mensaje", "El registro fué insertado con éxito");  
+           getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);
+        }else{
+            request.setAttribute("alumno", alumno);
+            request.setAttribute("errores", errores);            
+         
+            getServletContext().getRequestDispatcher(PATH_FORM_NEW).forward(request, response);
+        }
     }
     
     
@@ -200,19 +187,19 @@ public class AlumnoController extends HttpServlet {
         alumno.setCorreo_electrico(request.getParameter("correoElectronico"));
         
         
-//        Map<String,String>errores= alumno.getErrores();
-//                   
-//        if(errores.isEmpty()){                
-//           AlumnoBO alumnoBO= new AlumnoBO(); 
-//           alumnoBO.actualizar(alumno);
-//           request.setAttribute("mensaje", "El registro fué actualizado con éxito"); 
-//           getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);
-//        }else{
-//            request.setAttribute("alumno", alumno);
-//            request.setAttribute("errores", errores);            
-//            
-//            getServletContext().getRequestDispatcher(PATH_FORM_EDIT).forward(request, response);
-//        }        
+        Map<String,String>errores= alumno.getErrores();
+                   
+        if(errores.isEmpty()){                
+           AlumnoBO alumnoBO= new AlumnoBO(); 
+           alumnoBO.actualizar(alumno);
+           request.setAttribute("mensaje", "El registro fué actualizado con éxito"); 
+           getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);
+        }else{
+            request.setAttribute("alumno", alumno);
+            request.setAttribute("errores", errores);            
+            
+            getServletContext().getRequestDispatcher(PATH_FORM_EDIT).forward(request, response);
+        }        
     }
     
     

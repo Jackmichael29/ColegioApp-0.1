@@ -85,6 +85,9 @@ public class AreaDAO {
             }
         } catch (Exception e) {
             Bitacora.registrar(e);
+            if ( e.getMessage().contains("idx_area_nombre") ) {
+                throw new Exception("El Nombre ingresado ya existe en la base de datos"); 
+            }
             throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
         } finally {
             try {

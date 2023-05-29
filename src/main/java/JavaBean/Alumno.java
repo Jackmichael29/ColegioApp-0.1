@@ -6,6 +6,8 @@ package JavaBean;
 
 import Utilities.Validator;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 /**
  *
  * @author LAB-USR-HUAN-A0305
@@ -19,6 +21,16 @@ public class Alumno {
     private LocalDate fecha_nacimiento;
     private String correo_electrico;
     private String apellidosNombres;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
 
     public Alumno() {
     }
@@ -35,16 +47,15 @@ public class Alumno {
         return nombres;
     }
 
-    public void setNombres(String nombre) throws Exception {
+    public void setNombres(String nombre){
         if( (nombre==null) || (nombre.isEmpty()) ){
-            throw new Exception("El campo Nombre no puede estar vacio");           
+            errores.put("nombres", "El campo Nombre no puede estar vacio");  
+            return;
         }
-        else{
-            if(nombre.length() > 20){
-                throw new Exception("El campo Nombre no puede sobrepasar los 20 carácteres");
-            }
+        if(nombre.length() > 20){
+            errores.put("nombres", "El campo Nombre no puede sobrepasar los 20 carácteres");
+            return;
         }
-        
         this.nombres = nombre;
     }
 
@@ -52,15 +63,14 @@ public class Alumno {
         return apellido_materno;
     }
 
-    public void setApellido_materno(String apellido_materno) throws Exception{
+    public void setApellido_materno(String apellido_materno){
         if( (apellido_materno==null) || (apellido_materno.isEmpty()) ){
-            throw new Exception("El campo Apellido Materno no puede estar vacio");
-            
+            errores.put("apellido_materno", "El campo Apellido Materno no puede estar vacio");
+            return;
         }
-        else{
-            if(apellido_materno.length() > 20){
-                throw new Exception( "El campo Apellido Materno no puede sobrepasar los 20 carácteres");
-            }
+        if(apellido_materno.length() > 20){
+            errores.put("apellido_materno", "El campo Apellido Materno no puede sobrepasar los 20 carácteres");
+            return;
         }
         this.apellido_materno = apellido_materno;
     }
@@ -69,18 +79,16 @@ public class Alumno {
         return apellido_paterno;
     }
 
-    public void setApellido_paterno(String apellido_paterno) throws Exception{
+    public void setApellido_paterno(String apellido_paterno){
         //no puede ser vacio
         if( (apellido_paterno==null) || (apellido_paterno.isEmpty()) ){
-            throw new Exception("El campo Apellido Paterno no puede estar vacio");
-            
+            errores.put("apellido_paterno", "El campo Apellido Paterno no puede estar vacio");  
+            return;
         }
-        else{
-            if(apellido_paterno.length() > 20){
-                throw new Exception("El campo Apellido Paterno no puede sobrepasar los 20 carácteres");
-            }
+        if(apellido_paterno.length() > 20){
+            errores.put("apellido_paterno", "El campo Apellido Paterno no puede sobrepasar los 20 carácteres");
+            return;
         }
-        
         this.apellido_paterno = apellido_paterno;
     }
 
@@ -88,13 +96,14 @@ public class Alumno {
         return dni;
     }
 
-    public void setDni(String dni) throws Exception{
-        if(dni==null ||dni.isEmpty()){
-           throw new Exception("El campo DNI no puede estar en blanco"); 
-        }else{
-            if(!Validator.isDNI(dni)){
-              throw new Exception("Error en el formato de DNI");
-            }
+    public void setDni(String dni){
+        if(dni==null || dni.isEmpty()){
+            errores.put("dni", "El campo DNI no puede estar en blanco");
+            return;
+        }
+        if(!Validator.isDNI(dni)){
+            errores.put("dni", "Error en el formato de DNI");
+            return;
         }        
         this.dni = dni;
     }
@@ -104,9 +113,10 @@ public class Alumno {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(LocalDate fecha_nacimiento) throws Exception{
-        if( fecha_nacimiento==null ){
-            throw new Exception("El campo fechaNacimiento esta vacio");
+    public void setFecha_nacimiento(LocalDate fecha_nacimiento){
+        if( fecha_nacimiento == null || fecha_nacimiento == LocalDate.MIN){
+            errores.put("fecha_nacimiento", "El campo Fecha de Nacimiento esta vacio");
+            return;
         }
         this.fecha_nacimiento = fecha_nacimiento;
     }
@@ -115,16 +125,18 @@ public class Alumno {
         return correo_electrico;
     }
 
-    public void setCorreo_electrico(String correo_electrico) throws Exception{
-        if(( correo_electrico!=null ) && ( correo_electrico.isEmpty() )){
-            if(correo_electrico.length() > 50) {
-                throw new Exception("El campo Correo Electronico no puede sobrepasar los 50 caracteres");
-            }
-            else{
-                if(!Validator.isCorreoElectronico(correo_electrico)){
-                    throw new Exception("Error en el formato del Correo Electronico");
-                }
-            }
+    public void setCorreo_electrico(String correo_electrico){
+        if( correo_electrico ==null || correo_electrico.isEmpty() ){
+            errores.put("correo_electronico", "El campo Correo Electronico no puede estar vacia");
+            return;
+        }
+        if(correo_electrico.length() > 50) {
+            errores.put("correo_electronico", "El campo Correo Electronico no puede sobrepasar los 50 caracteres");
+            return;
+        }
+        if(!Validator.isCorreoElectronico(correo_electrico)){
+            errores.put("correo_electronico", "Error en el formato del Correo Electronico");
+            return;
         }
         this.correo_electrico = correo_electrico;
     }

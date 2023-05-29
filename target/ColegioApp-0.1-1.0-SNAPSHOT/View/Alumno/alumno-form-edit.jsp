@@ -44,17 +44,17 @@
                 
             <div class="mb-3">
                 <label for="apellidoPaterno" class="form-label">Apellido paterno</label>
-                <input type="text" name="apellidoPaterno" value="${alumno.apellidoPaterno}" autocomplete="off" class="form-control"/>            
-                <c:if test="${errores != null && not empty errores.apellidoPaterno}">
-                    <div style="color:red;">${errores.apellidoPaterno}</div>
+                <input type="text" name="apellidoPaterno" value="${alumno.apellido_paterno}" autocomplete="off" class="form-control"/> 
+                <c:if test="${errores != null && not empty errores.apellido_paterno}">
+                    <div style="color:red;">${errores.apellido_paterno}</div>
                 </c:if>            
             </div>
             
             <div class="mb-3">
                 <label for="apellidoMaterno" class="form-label">Apellido materno</label>
-                <input type="text" name="apellidoMaterno" value="${alumno.apellidoMaterno}" autocomplete="off" class="form-control"/>            
-                <c:if test="${errores != null && not empty errores.apellidoMaterno}">
-                    <div style="color:red;">${errores.apellidoMaterno}</div>
+                <input type="text" name="apellidoMaterno" value="${alumno.apellido_materno}" autocomplete="off" class="form-control"/>            
+                <c:if test="${errores != null && not empty errores.apellido_materno}">
+                    <div style="color:red;">${errores.apellido_materno}</div>
                 </c:if>               
             </div>
             
@@ -68,17 +68,17 @@
             
             <div class="mb-3">
                 <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
-                <input type="date" name="fechaNacimiento" id="fechaNacimiento" value="${alumno.fechaNacimiento}" class="form-control">            
-                <c:if test="${errores != null && not empty errores.fechaNacimiento}">
-                    <div style="color:red;">${errores.fechaNacimiento}</div>
+                <input type="date" name="fechaNacimiento" id="fechaNacimiento" value="${alumno.fecha_nacimiento}" class="form-control">            
+                <c:if test="${errores != null && not empty errores.fecha_nacimiento}">
+                    <div style="color:red;">${errores.fecha_nacimiento}</div>
                 </c:if>            
             </div>
             
             <div class="mb-3">
                 <label for="correoElectronico" class="form-label">Correo electrónico</label>
-                <input  type="email" name="correoElectronico" id="correoElectronico" value="${alumno.correoElectronico}" autocomplete="off" class="form-control">            
-                <c:if test="${errores != null && not empty errores.correoElectronico}">
-                    <div style="color:red;">${errores.correoElectronico}</div>
+                <input  type="email" name="correoElectronico" id="correoElectronico" value="${alumno.correo_electrico}" autocomplete="off" class="form-control">            
+                <c:if test="${errores != null && not empty errores.correo_electronico}">
+                    <div style="color:red;">${errores.correo_electronico}</div>
                 </c:if>             
             </div>
             
@@ -86,7 +86,7 @@
                 <input type="submit" value="Editar" class="btn btn-primary">
             </div>
                 
-            <input type="hidden" name="id" value="${alumno.alumnoId}">
+            <input type="hidden" name="id" value="${alumno.alumno_id}">
             
             
         </form>

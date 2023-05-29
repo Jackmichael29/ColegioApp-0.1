@@ -5,6 +5,8 @@
 package JavaBean;
 
 import Utilities.Validator;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -18,8 +20,17 @@ public class Docente {
     private String apellido_paterno;
     private String dni;
     private String apellidosNombres;
-    
     private String contacto;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
     
     public Docente() {
     }
@@ -36,16 +47,15 @@ public class Docente {
         return nombres;
     }
 
-    public void setNombres(String nombre) throws Exception {
+    public void setNombres(String nombre){
         if( (nombre==null) || (nombre.isEmpty()) ){
-            throw new Exception("El campo Nombre no puede estar vacio");           
+            errores.put("nombres", "El campo Nombre no puede estar vacio");
+            return;
         }
-        else{
-            if(nombre.length() > 20){
-                throw new Exception("El campo Nombre no puede sobrepasar los 20 carácteres");
-            }
+        if(nombre.length() > 20){
+            errores.put("nombres", "El campo Nombre no puede sobrepasar los 20 carácteres");
+            return;
         }
-        
         this.nombres = nombre;
     }
 
@@ -53,15 +63,14 @@ public class Docente {
         return apellido_materno;
     }
 
-    public void setApellido_materno(String apellido_materno) throws Exception{
+    public void setApellido_materno(String apellido_materno){
         if( (apellido_materno==null) || (apellido_materno.isEmpty()) ){
-            throw new Exception("El campo Apellido Materno no puede estar vacio");
-            
+            errores.put("apellido_materno", "El campo Apellido Materno no puede estar vacio");
+            return;
         }
-        else{
-            if(apellido_materno.length() > 20){
-                throw new Exception( "El campo Apellido Materno no puede sobrepasar los 20 carácteres");
-            }
+        if(apellido_materno.length() > 20){
+            errores.put("apellido_materno", "El campo Apellido Materno no puede sobrepasar los 20 carácteres");
+            return;
         }
         this.apellido_materno = apellido_materno;
     }
@@ -70,17 +79,15 @@ public class Docente {
         return apellido_paterno;
     }
 
-    public void setApellido_paterno(String apellido_paterno) throws Exception{
+    public void setApellido_paterno(String apellido_paterno){
         if( (apellido_paterno==null) || (apellido_paterno.isEmpty()) ){
-            throw new Exception("El campo Apellido Paterno no puede estar vacio");
-            
+            errores.put("apellido_paterno", "El campo Apellido Paterno no puede estar vacio");
+            return;
         }
-        else{
-            if(apellido_paterno.length() > 20){
-                throw new Exception("El campo Apellido Paterno no puede sobrepasar los 20 carácteres");
-            }
+        if(apellido_paterno.length() > 20){
+            errores.put("apellido_paterno", "El campo Apellido Paterno no puede sobrepasar los 20 carácteres");
+            return;
         }
-        
         this.apellido_paterno = apellido_paterno;
     }
 
@@ -88,13 +95,14 @@ public class Docente {
         return dni;
     }
 
-    public void setDni(String dni) throws Exception{
+    public void setDni(String dni){
         if(dni==null ||dni.isEmpty()){
-           throw new Exception("El campo DNI no puede estar en blanco"); 
-        }else{
-            if(!Validator.isDNI(dni)){
-              throw new Exception("Error en el formato de DNI");
-            }
+            errores.put("dni", "El campo DNI no puede estar en blanco");
+            return;
+        }
+        if(!Validator.isDNI(dni)){
+            errores.put("dni", "Error en el formato de DNI");
+            return;
         }        
         this.dni = dni;
     }
@@ -103,11 +111,14 @@ public class Docente {
         return contacto;
     }
 
-    public void setContacto(String contacto) throws Exception{
+    public void setContacto(String contacto){
         if(contacto==null ||contacto.isEmpty()){
-           throw new Exception("El campo Contacto no puede estar en blanco"); 
-        }else if(!Validator.isNumeroTelefono(contacto)){
-           throw new Exception("Error en el formato Contacto"); 
+            errores.put("contacto", "El campo Contacto no puede estar en blanco");
+            return;
+        }
+        if(!Validator.isNumeroTelefono(contacto)){
+            errores.put("contacto", "Error en el formato Contacto");
+            return;
         }
         this.contacto = contacto;
     }
@@ -118,5 +129,9 @@ public class Docente {
 
     public void setApellidosNombres(String apellidosNombres) {
         this.apellidosNombres = apellidosNombres;
+    }
+    
+    public void setApellidosNombres2() {
+        this.apellidosNombres = this.nombres + " " + this.apellido_paterno + " " + this.apellido_materno;
     }
 }
