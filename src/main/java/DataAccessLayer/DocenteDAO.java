@@ -146,6 +146,7 @@ public class DocenteDAO {
                 docente.setApellido_materno(rs.getString("apellido_materno"));
                 docente.setNombres(rs.getString("nombres"));
                 docente.setApellidosNombres(rs.getString("apellidos_nombres")); 
+                docente.setContacto(rs.getString("contacto"));
             }
 
         } catch (Exception e) {         

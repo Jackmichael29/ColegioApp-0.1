@@ -3,6 +3,7 @@ DataAccessLayer\AsistenciaAlumnoDAO.class
 JavaBean\Alumno.class
 DataAccessLayer\AsistenciaDocenteDAO.class
 DataAccessLayer\NotasDAO.class
+Controllers\DocenteController.class
 JavaBean\alumnoApoderado.class
 JavaBean\pagoMatricula.class
 Controllers\UsuarioController.class
@@ -21,6 +22,7 @@ JavaBean\HistorialNotas.class
 BusinessLayer\CursoBO.class
 JavaBean\Area.class
 Connection\UConnection.class
+Controllers\ApoderadoController.class
 DataAccessLayer\AlumnoDao.class
 BusinessLayer\HistorialNotasBO.class
 BusinessLayer\PagoVariosBO.class
