@@ -55,7 +55,6 @@ public class UsuarioBO {
         try {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.eliminar(id);
-            System.out.println("eliminando: " + id);
         } catch (Exception e) {
             throw e;
         }        

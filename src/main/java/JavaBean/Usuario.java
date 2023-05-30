@@ -125,7 +125,6 @@ public class Usuario {
     }
 
     public void setClave(String clave){
-        System.out.println("calve entrante en bean: " + clave);
         if (clave == null || clave.isEmpty()) {
             errores.put("clave","El campo Clave no puede estar vacío");
         }
