@@ -229,6 +229,8 @@ public class UsuarioDAO {
             
         }catch (Exception e) {         
             Bitacora.registrar(e);
+            System.out.println("usuario dni");
+            System.out.println(e);
             throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
         }finally{
             try {

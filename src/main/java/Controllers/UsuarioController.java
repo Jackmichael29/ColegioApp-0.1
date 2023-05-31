@@ -74,6 +74,7 @@ public class UsuarioController extends HttpServlet {
                     showChangePasswordForm(request, response);
             }
             } catch (Exception e) {
+                System.out.println(e);
                 throw new ServletException(e);
             }   
         
