@@ -209,7 +209,7 @@ public class AlumnoController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));        
         
         AlumnoBO alumnoBO= new AlumnoBO(); 
-        alumnoBO.eliminar(id);
+            alumnoBO.eliminar(id);
         request.setAttribute("mensaje", "El registro fué eliminado con éxito"); 
         getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);        
 
