@@ -26,7 +26,7 @@
        
             <div class="row">
                 <h1>Editar Datos de Alumno</h1>
-                <a href="${pageContext.request.contextPath}/Alumno?action=index">Regresar al inicio</a>
+                <a href="${pageContext.request.contextPath}/Alumno?action=index" class="btn-outline-secondary volver">Regresar al inicio</a>
             </div>       
             
             <div class="row">        
