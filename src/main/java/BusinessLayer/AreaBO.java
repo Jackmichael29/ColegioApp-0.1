@@ -65,23 +65,4 @@ public class AreaBO {
             throw e;
         }        
     }
-    
-    public ArrayList<Area> buscarPorArea(String cadena) throws Exception{
-        
-        try {
-            AreaDAO areaDAO = new AreaDAO();
-            return areaDAO.buscarPorArea(cadena);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-    
-    public Area buscarPorId(int id) throws Exception{  
-        try {
-            AreaDAO areaDAO = new AreaDAO();
-            return areaDAO.buscarPorId(id);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
 }

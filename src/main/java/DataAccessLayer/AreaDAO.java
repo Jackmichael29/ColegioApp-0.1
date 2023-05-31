@@ -217,7 +217,7 @@ public class AreaDAO {
              
         }catch (Exception e) {           
             Bitacora.registrar(e);
-            throw new Exception(e);
+            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
         }finally{
             try {
                 if(cstm!=null)cstm.close();             
@@ -227,80 +227,86 @@ public class AreaDAO {
         }        
     }
      
-    public ArrayList<Area> buscarPorArea(String cadena) throws Exception{
-     
-        ArrayList<Area> areas = new ArrayList<>();
-        Area area = null;
-        
-        Connection con=null;
-        CallableStatement cstm = null;  
-        ResultSet rs=null;
-        
-        try {            
-            con=UConnection.getConnection();
-            String sql="";            
-            sql="call sp_area_buscar_por_nombre(?)";
-            cstm=con.prepareCall(sql);
-            cstm.setString(1, cadena);
-         
-            rs = cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
-            
-            while(rs.next()){
-                area = new Area();
-                area.setArea_id(rs.getInt("area_id"));
-                area.setArea_nombre(rs.getString("nombre"));
-                
-                areas.add(area);
-            }
-            
-        }catch (Exception e) {         
-            Bitacora.registrar(e);
-            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
-        }finally{
-            try {
-                if(rs!=null)rs.close();
-                if(cstm!=null)cstm.close();                
-            } catch (Exception e) {
-                Bitacora.registrar(e);
-            }        
-        }        
-        return areas;     
-     }
+//    public ArrayList<Curso> buscarPorCurso(String cadena) throws Exception{
+//     
+//        ArrayList<Curso>cursos=new ArrayList<>();
+//        Curso curso=null;
+//        
+//        Connection con=null;
+//        CallableStatement cstm = null;  
+//        ResultSet rs=null;
+//        
+//        try {            
+//            con=UConnection.getConnection();
+//            String sql="";            
+//            sql="call sp_curso_buscar_por_curso(?)";
+//            cstm=con.prepareCall(sql);
+//            cstm.setString(1, cadena);
+//         
+//            rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
+//            
+//            while(rs.next()){
+//                curso = new Curso();
+//                curso.setCurso_id(rs.getInt("curso_id"));
+//                curso.setNombre(rs.getString("nombre"));
+//                curso.setGrado(rs.getString("grado").charAt(0));
+//                curso.setNivel(rs.getString("nivel").charAt(0));
+//                curso.setArea_id(rs.getInt("area_id"));
+//                
+//                cursos.add(curso);
+//            }
+//            
+//        }catch (Exception e) {         
+//            Bitacora.registrar(e);
+//            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
+//        }finally{
+//            try {
+//                if(rs!=null)rs.close();
+//                if(cstm!=null)cstm.close();                
+//            } catch (Exception e) {
+//                Bitacora.registrar(e);
+//            }        
+//        }        
+//        return cursos;     
+//     }
   
-    public Area buscarPorId(int id) throws Exception{        
-       
-        Area area = null;
-        
-        Connection con=null;
-        CallableStatement cstm = null;  
-        ResultSet rs=null;
-       
-        try {            
-            con=UConnection.getConnection();
-            String sql="";            
-            sql="call sp_area_buscar_por_id(?)";
-            cstm=con.prepareCall(sql);
-            cstm.setInt(1, id);
-         
-            rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones
-            
-            while(rs.next()){
-                area = new Area();
-                area.setArea_id(rs.getInt("area_id"));
-                area.setArea_nombre(rs.getString("nombre"));                            
-            }
-            
-        } catch (Exception e) {         
-            Bitacora.registrar(e);
-            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
-        }finally{
-            try {
-                if(rs!=null)rs.close();
-                if(cstm!=null)cstm.close();                
-            } catch (Exception e) {
-                Bitacora.registrar(e);
-            }        
-        }        
-        return area;     
-     }
+//    public Curso buscarPorId(int id) throws Exception{        
+//       
+//        Curso curso=null;
+//        
+//        Connection con=null;
+//        CallableStatement cstm = null;  
+//        ResultSet rs=null;
+//       
+//        try {            
+//            con=UConnection.getConnection();
+//            String sql="";            
+//            sql="call sp_curso_buscar_por_id(?)";
+//            cstm=con.prepareCall(sql);
+//            cstm.setInt(1, id);
+//         
+//            rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones
+//            
+//            while(rs.next()){
+//                curso = new Curso();
+//                curso.setCurso_id(rs.getInt("curso_id"));
+//                curso.setNombre(rs.getString("nombre"));
+//                curso.setGrado(rs.getString("grado").charAt(0));
+//                curso.setNivel(rs.getString("nivel").charAt(0));
+//                curso.setArea_id(rs.getInt("area_id"));                            
+//            }
+//            
+//        } catch (Exception e) {         
+//            Bitacora.registrar(e);
+//            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
+//        }finally{
+//            try {
+//                if(rs!=null)rs.close();
+//                if(cstm!=null)cstm.close();                
+//            } catch (Exception e) {
+//                Bitacora.registrar(e);
+//            }        
+//        }        
+//        return curso;     
+//     }
 }

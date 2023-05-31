@@ -80,11 +80,11 @@ public class CursoDAO {
            if(numeroFilasAfectadas>0){
               //curso.setCurso_id(cstm.getInt(1));
            }else{
-               throw new Exception("No se pudo modificar el curso");
+               throw new Exception("No se pudo registrar el curso");
            }           
         } catch (Exception e) {
             Bitacora.registrar(e);
-            throw e;
+            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
         }finally{
             try {
                if(cstm!=null)cstm.close();             
