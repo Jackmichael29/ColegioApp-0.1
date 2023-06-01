@@ -109,9 +109,9 @@ import= "JavaBean.Apoderado, java.util.ArrayList"
    } );
       
  
-  </script>           
-            
-            
+  </script>    
+  
+  
   <%@ include file="/View/Container/footer.jsp" %>
 </body>
 
