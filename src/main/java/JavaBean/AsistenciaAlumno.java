@@ -5,6 +5,8 @@
 package JavaBean;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -15,6 +17,16 @@ public class AsistenciaAlumno {
     private LocalDate fecha;
     private String Observacion;
     private int alumno_id;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
 
     public AsistenciaAlumno(){
     }
@@ -31,9 +43,9 @@ public class AsistenciaAlumno {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) throws Exception{
+    public void setFecha(LocalDate fecha){
         if(fecha == null || fecha.equals(LocalDate.MIN) ){
-            throw new Exception("La fecha está vacía o no ha sido inicializada");
+            errores.put("fecha","La fecha está vacía o no ha sido inicializada");
         }
         this.fecha = fecha;
     }

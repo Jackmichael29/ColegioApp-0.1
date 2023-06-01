@@ -4,6 +4,9 @@
  */
 package JavaBean;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author LAB-USR-HUAN-A0305
@@ -12,6 +15,16 @@ public class Area {
     
     private int area_id;
     private String area_nombre;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
 
     public Area() {
     }
@@ -28,9 +41,9 @@ public class Area {
         return area_nombre;
     }
 
-    public void setArea_nombre(String area_nombre) throws Exception{
+    public void setArea_nombre(String area_nombre){
         if( (area_nombre==null) || (area_nombre.isEmpty()) ){
-            throw new Exception("El campo Nombre no puede estar vacio");
+            errores.put("area_nombre","El campo Nombre no puede estar vacio");
         }
         
         this.area_nombre = area_nombre;

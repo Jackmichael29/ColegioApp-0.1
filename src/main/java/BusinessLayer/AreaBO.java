@@ -19,22 +19,23 @@ public class AreaBO {
 
     }
 
-    public void insertar(Curso curso) throws Exception{
+    public void insertar(Area area) throws Exception{
         
         try {
-            CursoDAO cursoDAO = new CursoDAO();
-            cursoDAO.insertar(curso);
+            AreaDAO areaDAO = new AreaDAO();
+            System.out.println("insertando");
+            areaDAO.insertar(area);
         } catch (Exception e) {
             throw e;
         }
         
     }
     
-    public void actualizar(Curso curso) throws Exception{  
+    public void actualizar(Area area) throws Exception{  
         
         try {
-           CursoDAO cursoDAO = new CursoDAO();
-           cursoDAO.modificar(curso); 
+           AreaDAO areaDAO = new AreaDAO();
+           areaDAO.actualizar(area); 
         } catch (Exception e) {
             throw e;
         }
@@ -44,34 +45,43 @@ public class AreaBO {
     public void eliminar(int id) throws Exception{  
         
         try {
-            CursoDAO cursoDAO = new CursoDAO();
-            cursoDAO.eliminar(id);
+            AreaDAO areaDAO = new AreaDAO();
+            areaDAO.eliminar(id);
         } catch (Exception e) {
              throw e;
         }
         
     }
     
-    public ArrayList<Curso> buscarPorCurso(String cadena) throws Exception{  
+    public ArrayList<Area> listar(String cadena) throws Exception{  
         
         try {
             if(cadena.length()>60){                
                throw new Exception("El argumento no puede exceder de 60 caracteres");                    
             }            
-            CursoDAO cursoDAO = new CursoDAO();
-            return cursoDAO.buscarPorCurso(cadena);
+            AreaDAO areaDAO = new AreaDAO();
+            return areaDAO.listar();
         } catch (Exception e) {
             throw e;
         }        
     }
     
-    public Curso buscarPorId(int id) throws Exception{  
+    public ArrayList<Area> buscarPorArea(String cadena) throws Exception{
         
         try {
-            CursoDAO cursoDAO = new CursoDAO();
-            return cursoDAO.buscarPorCursoId(id);
+            AreaDAO areaDAO = new AreaDAO();
+            return areaDAO.buscarPorArea(cadena);
         } catch (Exception e) {
-             throw e;
-        }        
+            throw e;
+        }
+    }
+    
+    public Area buscarPorId(int id) throws Exception{  
+        try {
+            AreaDAO areaDAO = new AreaDAO();
+            return areaDAO.buscarPorId(id);
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }

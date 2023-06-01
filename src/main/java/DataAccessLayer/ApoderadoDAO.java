@@ -42,8 +42,8 @@ public class ApoderadoDAO {
             if(e.getMessage().contains("idx_apoderado_dni")) {
                 throw new Exception("El DNI ingresado ya existe en la base de datos");
             }
-            if(e.getMessage().contains("idx_apoderado_electronico")) {
-                throw new Exception("El Correo electrónico ingresado ya existe en la base de datos");
+            if(e.getMessage().contains("idx_apoderado_contacto")) {
+                throw new Exception("El Contacto ingresado ya existe en la base de datos");
             }
             Bitacora.registrar(e);
             throw new Exception("Error crítico: Comunicarse con el administrador del sistema");

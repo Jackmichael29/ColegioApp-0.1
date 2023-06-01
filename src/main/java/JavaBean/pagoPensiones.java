@@ -5,6 +5,8 @@
 package JavaBean;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -18,6 +20,16 @@ public class pagoPensiones {
     private String observacion;
     
     private int alumno_id;
+    
+    private Map<String,String> errores = new HashMap<>();
+    
+    public Map<String, String> getErrores() {
+        return errores;
+    }
+    
+    public void setErrores(Map<String, String> errores) {
+        this.errores = errores;
+    }
 
     public pagoPensiones(){
     }
@@ -34,9 +46,9 @@ public class pagoPensiones {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) throws Exception{
+    public void setFecha(LocalDate fecha){
         if(fecha == null || fecha.equals(LocalDate.MIN) ){
-            throw new Exception("La fecha está vacía o no ha sido inicializada");
+            errores.put("fecha","La fecha está vacía o no ha sido inicializada");
         }
         this.fecha = fecha;
     }
@@ -45,9 +57,9 @@ public class pagoPensiones {
         return monto;
     }
 
-    public void setMonto(double monto) throws Exception{
+    public void setMonto(double monto){
         if(monto <= 0){
-            throw new Exception("El monto debe ser mayor a 0");
+            errores.put("monto","El monto debe ser mayor a 0");
         }
         this.monto = monto;
     }
@@ -56,9 +68,9 @@ public class pagoPensiones {
         return observacion;
     }
 
-    public void setObservacion(String observacion) throws Exception{
+    public void setObservacion(String observacion){
         if(observacion == null || observacion.isEmpty()){
-            throw new Exception("El campo observacion no debe estar vacia");
+            errores.put("observacion","El campo observacion no debe estar vacia");
         }
         this.observacion = observacion;
     }

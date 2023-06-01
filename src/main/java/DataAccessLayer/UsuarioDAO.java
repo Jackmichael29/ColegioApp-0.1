@@ -138,28 +138,24 @@ public class UsuarioDAO {
         try {
             con=UConnection.getConnection();
             String sql="";            
-            sql="call sp_usuario_actualizar(?,?,?,?,?,?,?)";
+            sql="call sp_usuario_actualizar(?,?,?,?,?,?)";
             cstm=con.prepareCall(sql);
             cstm.setInt(1, usuario.getUsuario_id());           
             cstm.setString(2, usuario.getDni());            
             cstm.setString(3, usuario.getApellido_paterno());
             cstm.setString(4, usuario.getApellido_materno());
-            cstm.setString(5, usuario.getNombres());            
-            System.out.println("++++++++++");
-            System.out.println(usuario.getApellido_paterno());
-            System.out.println(String.valueOf(usuario.getUsuario_id()));
-            String claveEncriptada="";
-            cstm.setString(6, claveEncriptada);
-            
-            cstm.setString(7, usuario.getRol());
+            cstm.setString(5, usuario.getNombres());
+            cstm.setString(6, usuario.getRol());
             
             cstm.execute(); //se puede usar .execute() para todas las operaciones
              
         }catch (Exception e) {         
             if(e.getMessage().contains("idx_usuario_dni")) {
+                System.out.println(e);
                 throw new Exception("El DNI ingresado ya existe en la base de datos");
             }          
             Bitacora.registrar(e);
+            System.out.println(e);
             throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
         }finally{
             try {
@@ -216,18 +212,25 @@ public class UsuarioDAO {
             cstm.setString(1, cadena);
          
             rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
-            
+            System.out.println("USUARIODAOOO");
             while(rs.next()){
                 usuario = new Usuario();
                 usuario.setUsuario_id(rs.getInt("usuario_id"));
                 usuario.setDni(rs.getString("dni"));
-                usuario.setApellidosNombres(rs.getString("apellidos_nombres"));
+                usuario.setApellido_paterno(rs.getString("apellido_paterno"));
+                usuario.setApellido_materno(rs.getString("apellido_materno"));
+                usuario.setNombres(rs.getString("nombres"));
+                usuario.setClave(rs.getString("clave"));
+                usuario.setRol(rs.getString("rol"));
+                usuario.setApellidosNombres(usuario.getApellido_paterno() + " " + usuario.getApellido_materno() + ", " + usuario.getNombres());
                 
                 usuarios.add(usuario);
             }
             
         }catch (Exception e) {         
             Bitacora.registrar(e);
+            System.out.println("usuario dni");
+            System.out.println(e);
             throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
         }finally{
             try {
@@ -254,14 +257,18 @@ public class UsuarioDAO {
             sql="call sp_usuario_buscar_por_dni(?)";
             cstm=con.prepareCall(sql);
             cstm.setString(1, dni);
-         
+            System.out.println("usa dni");
             rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
             
             while(rs.next()){
                 usuario = new Usuario();
-                usuario.setUsuario_id(rs.getInt("usuario_id"));
-                usuario.setDni(rs.getString("dni"));
-                usuario.setApellidosNombres(rs.getString("apellidos_nombres"));             
+                System.out.println(rs.getString("apellido_paterno"));
+                usuario.setApellido_paterno(rs.getString("apellido_paterno"));             
+                usuario.setApellido_materno(rs.getString("apellido_materno"));             
+                usuario.setNombres(rs.getString("nombres"));
+                usuario.setClave(rs.getString("clave"));
+                usuario.setRol(rs.getString("rol"));      
+                usuario.setApellidosNombres(usuario.getApellido_paterno() + " " + usuario.getApellido_materno() + ", " + usuario.getNombres());
             }
             
         }catch (Exception e) {         
@@ -303,8 +310,10 @@ public class UsuarioDAO {
                 usuario.setApellido_paterno(rs.getString("apellido_paterno"));
                 usuario.setApellido_materno(rs.getString("apellido_materno"));
                 usuario.setNombres(rs.getString("nombres"));
+                usuario.setClave(rs.getString("clave"));
+                System.out.println(rs.getString("clave"));
                 usuario.setRol(rs.getString("rol"));
-                                       
+                usuario.setApellidosNombres(usuario.getApellido_paterno() + " " + usuario.getApellido_materno() + ", " + usuario.getNombres());                   
             }
             
         } catch (Exception e) {         
@@ -335,10 +344,16 @@ public class UsuarioDAO {
             cstm=con.prepareCall(sql);
             cstm.setInt(1, usuario.getUsuario_id());   
             
-          //  String bcryptHashString = BCrypt.withDefaults().hashToString(12, usuario.getClaveNueva().toCharArray());
-          //  usuario.setClave(bcryptHashString);
+            System.out.println("nueva clave es: " + usuario.getClave());
             
-            cstm.setString(2, usuario.getClave());            
+            String bcryptHashString = BCrypt.withDefaults().hashToString(12, usuario.getClave().toCharArray());
+            
+            System.out.println(bcryptHashString.length());
+            
+            cstm.setString(2, bcryptHashString); 
+            usuario.setClave(bcryptHashString);
+            System.out.println("clave encriptada es: " + usuario.getClave());
+                        
       
             
             cstm.executeUpdate(); //se puede usar .execute() para todas las operaciones
