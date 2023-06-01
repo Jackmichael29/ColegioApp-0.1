@@ -43,19 +43,32 @@
             </div>
                 
             <div class="mb-3">
-                <label for="grado" class="form-label">Grado</label>
-                <input type="text" name="grado" value="${curso.grado}" autocomplete="off" class="form-control"/> 
+                <label for="grado" class="form-label">Grado</label> <br>
+                <select id="grado" name="grado" class="form-control">
+                    <option value="0">Seleccionar</option>
+                    <option value="1">1er Grado</option>
+                    <option value="2">2do Grado</option>
+                    <option value="3">3er Grado</option>
+                    <option value="4">4to Grado</option>
+                    <option value="5">5to Grado</option>
+                    <option value="6">6to Grado</option>
+                </select>          
                 <c:if test="${errores != null && not empty errores.grado}">
                     <div style="color:red;">${errores.grado}</div>
-                </c:if>            
+                </c:if>
             </div>
             
             <div class="mb-3">
-                <label for="nivel" class="form-label">Nivel</label>
-                <input type="text" name="nivel" value="${curso.nivel}" autocomplete="off" class="form-control"/>            
+                <label for="nivel" class="form-label">Nivel</label> <br>            
+                <select id="nivel" name="nivel" class="form-control">
+                    <option value="0">Seleccionar</option>
+                    <option value="I">Inicial</option>
+                    <option value="P">Primaria</option>
+                    <option value="S">Secundaria</option>
+                </select>          
                 <c:if test="${errores != null && not empty errores.nivel}">
                     <div style="color:red;">${errores.nivel}</div>
-                </c:if>               
+                </c:if>              
             </div>
             
             <div class="mb-3">

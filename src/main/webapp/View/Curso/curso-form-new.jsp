@@ -44,21 +44,31 @@
                 </div>             
 
                 <div class="mb-3">
-                    <label for="nivel" class="form-label">Nivel</label>
-                    <input type="text" name="nivel" value="${curso!=null? curso.nivel:""}" autocomplete="off" class="form-control"/>            
+                    <label for="nivel" class="form-label">Nivel</label> <br>
+                    <select id="nivel" name="nivel" class="form-control">
+                        <option value="0">Seleccionar</option>
+                        <option value="I">Inicial</option>
+                        <option value="P">Primaria</option>
+                        <option value="S">Secundaria</option>
+                    </select>                   
                     <c:if test="${errores != null && not empty errores.nivel}">
                     <div style="color:red;">${errores.nivel}</div>
                     </c:if>   
                 </div>
-                    
+                   
                 <div class="mb-3">    
-                    <label for="grado" class="form-label">Grado</label>
-                    <input type="text" name="grado" value="${curso!=null? curso.grado:""}" autocomplete="off" class="form-control"/>
+                    <label for="grado" class="form-label">Grado</label> <br>
+                    <select id="grado" name="grado" class="form-control">
+                        <option value="0">Seleccionar</option>
+                        <option value="I">Inicial</option>
+                        <option value="P">Primaria</option>
+                        <option value="S">Secundaria</option>
+                    </select>
                     <c:if test="${errores != null && not empty errores.grado}">
                     <div style="color:red;">${errores.grado}</div>
-                    </c:if>            
-                </div>      
-
+                    </c:if>    
+                </div> 
+                
                 <div class="mb-3">
                     <label for="areaId" class="form-label">AreaId</label>
                     <input type="text" name="areaId" value="${curso!=null? curso.area_id:""}" autocomplete="off" class="form-control"/>            

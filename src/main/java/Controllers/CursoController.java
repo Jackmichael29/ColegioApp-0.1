@@ -137,23 +137,48 @@ public class CursoController extends HttpServlet {
         
         Curso curso = new Curso();
         
+        curso.setNombre(request.getParameter("nombre"));
         
-        curso.setNombre(request.getParameter("nombre"));  
-        curso.setArea_id(Integer.parseInt(request.getParameter("areaId")));         
+        if(!(request.getParameter("grado").charAt(0) == '0'))
+            curso.setGrado(request.getParameter("grado").charAt(0));
+        else
+            curso.setGrado(' ');
+            
+        if(!(request.getParameter("nivel").charAt(0) == '0'))
+            curso.setNivel(request.getParameter("nivel").charAt(0));
+        else
+            curso.setNivel(' ');
         
         Map<String,String>errores = curso.getErrores();
+        
+        try {
+            curso.setArea_id(Integer.parseInt(request.getParameter("areaId")));
+        } catch (Exception e) {
+            if(e.getMessage().contains("For input string:"))
+                errores.put("area_id", "El campo Area id no debe contener letras.");
+            else
+                errores.put("area_id", e.getMessage()+"a");
+        }
                    
         if(errores.isEmpty()){                
            CursoBO cursoBO= new CursoBO();          
             try {
-                curso.setArea_id(Integer.parseInt(request.getParameter("areaId")));
-                
                 cursoBO.insertar(curso);
-                request.setAttribute("mensaje", "El registro fué insertado con éxito");  
+                request.setAttribute("mensaje", "El registro fué insertado con éxito");
             } catch (Exception e) {
-                request.setAttribute("mensaje", e.getMessage());  
+                if(e.getMessage().contains("El id del area no es válido")){
+                    errores.put("area_id", e.getMessage());
+                    
+                    request.setAttribute("curso", curso);
+                    request.setAttribute("errores", errores);            
+         
+                    getServletContext().getRequestDispatcher(PATH_FORM_NEW).forward(request, response);
+                }
+                request.setAttribute("mensaje", "No se pudo insertar el registro"); 
             }
-           getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);
+            finally{
+                getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);
+            }
         }else{
             request.setAttribute("curso", curso);
             request.setAttribute("errores", errores);            
@@ -171,23 +196,47 @@ public class CursoController extends HttpServlet {
         
         curso.setCurso_id( Integer.parseInt( request.getParameter("id") ) );
         curso.setNombre(request.getParameter("nombre"));
-        curso.setGrado(request.getParameter("grado").charAt(0));
-        curso.setNivel(request.getParameter("nivel").charAt(0));
-        curso.setArea_id(  Integer.parseInt( request.getParameter("areaId") )  );
+        
+        if(!(request.getParameter("grado").charAt(0) == '0'))
+            curso.setGrado(request.getParameter("grado").charAt(0));
+        else
+            curso.setGrado(' ');
+            
+        if(!(request.getParameter("nivel").charAt(0) == '0'))
+            curso.setNivel(request.getParameter("nivel").charAt(0));
+        else
+            curso.setNivel(' ');
         
         Map<String,String>errores = curso.getErrores();
+        
+        try {
+            curso.setArea_id(Integer.parseInt(request.getParameter("areaId")));
+        } catch (Exception e) {
+            if(e.getMessage().contains("For input string:"))
+                errores.put("area_id", "El campo Area id no debe contener letras.");
+            else
+                errores.put("area_id", e.getMessage()+"a");
+        }
                    
-        if(errores.isEmpty()){                
+        if(errores.isEmpty()){
+            CursoBO cursoBO= new CursoBO();
             try {
-                CursoBO cursoBO= new CursoBO(); 
                 cursoBO.actualizar(curso);
-                
-                request.setAttribute("mensaje", "El registro fué actualizado con éxito"); 
+                request.setAttribute("mensaje", "El registro fué actualizado con éxito");
             } catch (Exception e) {
-                request.setAttribute("mensaje", e.getMessage()); 
+                if(e.getMessage().contains("El id del area no es válido")){
+                    errores.put("area_id", e.getMessage());
+                    
+                    request.setAttribute("curso", curso);
+                    request.setAttribute("errores", errores);            
+         
+                    getServletContext().getRequestDispatcher(PATH_FORM_NEW).forward(request, response);
+                }
+                request.setAttribute("mensaje", "El registro no fué actualizado"); 
             }
-           
-           getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);
+            finally{
+                getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);
+            }
         }else{
             request.setAttribute("curso", curso);
             request.setAttribute("errores", errores);            
