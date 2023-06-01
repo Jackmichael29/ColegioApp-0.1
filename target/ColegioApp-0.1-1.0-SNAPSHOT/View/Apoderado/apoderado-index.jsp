@@ -43,7 +43,7 @@ import= "JavaBean.Apoderado, java.util.ArrayList"
         </form>
 
 
-        <table class="table table-striped">
+        <table class = "table table-bordered table-hover .thead-light">
             <thead>
             <tr>
                 <th scope="col">codigo</th>
