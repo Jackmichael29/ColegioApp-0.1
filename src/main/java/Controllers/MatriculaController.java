@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author xbest
  */
-@WebServlet(name = "MatriculaController", urlPatterns = {"/MatriculaController"})
+@WebServlet(name = "MatriculaController", urlPatterns = {"/Matricula"})
 public class MatriculaController extends HttpServlet {
 
     /**

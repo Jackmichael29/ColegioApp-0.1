@@ -28,7 +28,7 @@ import= "JavaBean.Area, java.util.ArrayList"
    
             <div class="row" >
                 <h1>Inicio</h1>
-                <a href="${pageContext.request.contextPath}/Area?action=new">Nuevo</a>
+                <a href="${pageContext.request.contextPath}/Area?action=new">Nueva Area</a>
             </div>
             
             <div class="row">

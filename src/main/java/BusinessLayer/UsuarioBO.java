@@ -21,12 +21,12 @@ public class UsuarioBO {
     
     public void loguin(Usuario usuario) throws Exception{
         
-        try {
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            usuarioDAO.loguin(usuario);
-        } catch (Exception e) {
-            throw e;
-        }
+//        try {
+//            UsuarioDAO usuarioDAO = new UsuarioDAO();
+//            usuarioDAO.loguin(usuario);
+//        } catch (Exception e) {
+//            throw e;
+//        }
         
      }   
     

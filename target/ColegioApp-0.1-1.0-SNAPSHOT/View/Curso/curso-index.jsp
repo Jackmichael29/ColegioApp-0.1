@@ -28,7 +28,7 @@ import= "JavaBean.Curso, java.util.ArrayList"
    
             <div class="row" >
                 <h1>Inicio Curso</h1>
-                <a href="${pageContext.request.contextPath}/Curso?action=new">Nuevo</a>
+                <a href="${pageContext.request.contextPath}/Curso?action=new">Nuevo Curso</a>
             </div>
             
             <div class="row">
