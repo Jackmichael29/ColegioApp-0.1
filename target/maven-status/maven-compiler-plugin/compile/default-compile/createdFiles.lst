@@ -1,6 +1,7 @@
 BusinessLayer\PagoPensionBO.class
 DataAccessLayer\AsistenciaAlumnoDAO.class
 JavaBean\Alumno.class
+Controllers\AreaController.class
 DataAccessLayer\AsistenciaDocenteDAO.class
 DataAccessLayer\NotasDAO.class
 Controllers\DocenteController.class
