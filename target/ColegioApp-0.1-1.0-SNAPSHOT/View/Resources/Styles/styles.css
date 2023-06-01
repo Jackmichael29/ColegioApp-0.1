@@ -8,12 +8,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 .banner{
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    padding: auto;
 }
 
 .lema{
     font-size: 20px;
     text-align: center;
+}
+
+nav{
+    background-color: #FFEDE1;
+    padding-right: 2.5rem;
+    padding-top: 2.5rem;
+    min-height: 100%
+}
+
+header{
+    background-color: #D7F9FF;
+    min-width: 100vw;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: 1rem;
 }
 
 nav ul{
@@ -28,12 +45,8 @@ a{
 }
 
 body{
-    background-color: #e5e4ec;
+    background-color: #F9FBF2;
     font-family: 'Markazi Text', sans-serif;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    margin-left: 5%;
-    margin-right: 5%;
 }
 
 footer{

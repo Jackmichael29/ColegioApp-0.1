@@ -6,7 +6,7 @@
 
 
  
-    <div class="col-12 py-3">
+    <div class="">
         <header>   
             <div class="banner">
                 <div>

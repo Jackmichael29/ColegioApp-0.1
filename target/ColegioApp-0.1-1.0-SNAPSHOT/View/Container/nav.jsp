@@ -5,7 +5,7 @@
 --%>
 
   
-    <div class="col-2 py-3">
+    <div class="col-2">
         <nav>
         <ul>
             
