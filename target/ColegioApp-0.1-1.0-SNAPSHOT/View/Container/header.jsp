@@ -10,9 +10,9 @@
         <header>   
             <div class="banner">
                 <div>
-                    <img src="${pageContext.request.contextPath}/View/Resources/img/logo.PNG" alt="logotipo" width="100" height="100">
+                    <a href="${pageContext.request.contextPath}/Alumno?action=index"><img src="${pageContext.request.contextPath}/View/Resources/img/logo.PNG" alt="logotipo" width="100" height="100"></a>
                 </div>
-                <div class="lema">
+                <div class="lema float-left">
                     Colegio Unicom La Molina, Educando a los lideres del Manana.
                 </div>
             </div>

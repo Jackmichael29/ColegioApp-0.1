@@ -11,8 +11,8 @@ import= "JavaBean.Alumno, java.util.ArrayList" %>
         
             <div class="row grow w-100">  
             
-   <%@ include file="/View/Container/header.jsp" %>     
-   <%@ include file="/View/Container/nav.jsp" %>
+    <%@ include file="/View/Container/header.jsp" %>     
+    <%@ include file="/View/Container/nav.jsp" %>
         
       <div class="main col-10 h-100 py-3">            
         
