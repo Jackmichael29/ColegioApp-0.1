@@ -44,7 +44,7 @@ import= "JavaBean.Apoderado, java.util.ArrayList"
 
 
         <table class = "table table-bordered table-hover">
-            <thead class = "thead-light">
+            <thead class = "thead-dark">
             <tr>
                 <th scope="col">codigo</th>
                 <th scope="col">DNI</th>
