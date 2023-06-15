@@ -6,6 +6,7 @@ package JavaBean;
 
 import Utilities.Validator;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 /**
@@ -21,6 +22,8 @@ public class Alumno {
     private LocalDate fecha_nacimiento;
     private String correo_electrico;
     private String apellidosNombres;
+    private ArrayList<HistorialNotas> hnotas = new ArrayList<>();
+    private HistorialNotas hnot = new HistorialNotas();
     
     private Map<String,String> errores = new HashMap<>();
     
@@ -147,5 +150,25 @@ public class Alumno {
 
     public void setApellidosNombres(String apellidosNombres) {
         this.apellidosNombres = apellidosNombres;
-    }      
+    }     
+
+    public ArrayList<HistorialNotas> getHnotas() {
+        return hnotas;
+    }
+
+    public void setHnotas(ArrayList<HistorialNotas> hnotas) {
+        this.hnotas = hnotas;
+    }    
+    
+    public void agregarHnotas(HistorialNotas hn){
+        this.hnotas.add(hn);
+    }
+
+    public HistorialNotas getHnot() {
+        return hnot;
+    }
+
+    public void setHnot(HistorialNotas hnot) {
+        this.hnot = hnot;
+    }
 }

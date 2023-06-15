@@ -27,35 +27,16 @@ public class NotasDAO {
             String sql="";            
             sql="call sp_notas_insertar(?,?,?,?,?,?)";
             cstm=con.prepareCall(sql);
-            int cont = 0;
-            if(notas.getNota1()>20 || notas.getNota1() < 0){
-                cont++;
-            }
-            if(notas.getNota2()>20 || notas.getNota2() < 0){
-                cont++;
-            }
-            if(notas.getNota3()>20 || notas.getNota3() < 0){
-                cont++;
-            }
-            if(notas.getNota4()>20 || notas.getNota4() < 0){
-                cont++;
-            }
-            if(notas.getNota5()>20 || notas.getNota5() < 0){
-                cont++;
-            }
+        
+            cstm.setInt(1, notas.getHistorial_notas_id());
+            cstm.setDouble(2, notas.getNota1());
+            cstm.setDouble(3, notas.getNota2());
+            cstm.setDouble(4, notas.getNota3());
+            cstm.setDouble(5, notas.getNota4());
+            cstm.setDouble(6, notas.getNota5());
             
-          
-           if(cont==0){
-                cstm.setInt(1, notas.getHistorial_notas_id());
-                cstm.setDouble(2, notas.getNota1());
-                cstm.setDouble(3, notas.getNota2());
-                cstm.setDouble(4, notas.getNota3());
-                cstm.setDouble(5, notas.getNota4());
-                cstm.setDouble(6, notas.getNota5());
-                cstm.executeUpdate();
-           }else{
-               throw new Exception("No se pudo registrar las notas");
-           }           
+            cstm.executeUpdate();
+                    
         } catch (Exception e) {
             System.out.println(e);
             Bitacora.registrar(e);

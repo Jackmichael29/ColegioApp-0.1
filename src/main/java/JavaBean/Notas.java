@@ -45,9 +45,10 @@ public class Notas {
     }
 
     public void setNota1(double nota1){
-        if(nota1<0){
-            errores.put("nota1","El valor ingresado para el campo Nota1 debe ser mayor o igual a 0");
-        }
+        if(!(nota1>=0 && nota1<=20)){
+            errores.put("nota1","La nota debe ser un numero entre 0 y 20");
+        }  
+        
         this.nota1 = nota1;
     }
 
@@ -56,8 +57,8 @@ public class Notas {
     }
 
     public void setNota2(double nota2){
-        if(nota1<0){
-            errores.put("nota2","El valor ingresado para el campo Nota2 debe ser mayor o igual a 0");
+        if(!(nota2>=0 && nota2<=20)){
+            errores.put("nota2","La nota debe ser un numero entre 0 y 20");
         }
         this.nota2 = nota2;
     }
@@ -67,8 +68,8 @@ public class Notas {
     }
 
     public void setNota3(double nota3){
-        if(nota1<0){
-            errores.put("nota3","El valor ingresado para el campo Nota3 debe ser mayor o igual a 0");
+        if(!(nota3>=0 && nota3<=20)){
+            errores.put("nota3","La nota debe ser un numero entre 0 y 20");
         }
         this.nota3 = nota3;
     }
@@ -78,8 +79,8 @@ public class Notas {
     }
 
     public void setNota4(double nota4){
-        if(nota1<0){
-            errores.put("nota4","El valor ingresado para el campo Nota4 debe ser mayor o igual a 0");
+        if(!(nota4>=0 && nota4<=20)){
+            errores.put("nota4","La nota debe ser un numero entre 0 y 20");
         }
         this.nota4 = nota4;
     }
@@ -89,8 +90,8 @@ public class Notas {
     }
 
     public void setNota5(double nota5){
-        if(nota1<0){
-            errores.put("nota5","El valor ingresado para el campo Nota5 debe ser mayor o igual a 0");
+        if(!(nota5>=0 && nota5<=20)){
+            errores.put("nota5","La nota debe ser un numero entre 0 y 20");
         }
         this.nota5 = nota5;
     }

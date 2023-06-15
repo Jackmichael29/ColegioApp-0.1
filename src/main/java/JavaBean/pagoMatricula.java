@@ -44,7 +44,7 @@ public class pagoMatricula {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) throws Exception{
+    public void setFecha(LocalDate fecha){
         if(fecha == null || fecha.equals(LocalDate.MIN) ){
             errores.put("fecha","La fecha está vacía o no ha sido inicializada");
         }
@@ -55,7 +55,7 @@ public class pagoMatricula {
         return monto;
     }
 
-    public void setMonto(double monto) throws Exception{
+    public void setMonto(double monto){
         if(monto <= 0){
             errores.put("monto","El monto debe ser mayor a 0");
         }
@@ -74,7 +74,7 @@ public class pagoMatricula {
         return observacion;
     }
 
-    public void setObservacion(String observacion) throws Exception{
+    public void setObservacion(String observacion){
         if(observacion == null || observacion.isEmpty()){
             errores.put("observacion","El campo observacion no debe estar vacia");
         }

@@ -21,6 +21,7 @@ JavaBean\pagoVarios.class
 JavaBean\PRUEBA2.class
 JavaBean\HistorialNotas.class
 BusinessLayer\CursoBO.class
+Controllers\MantenimientoController.class
 JavaBean\Area.class
 Connection\UConnection.class
 Controllers\ApoderadoController.class
@@ -29,6 +30,7 @@ BusinessLayer\HistorialNotasBO.class
 BusinessLayer\PagoVariosBO.class
 com\utp\colegiowebapp\JakartaRestConfiguration.class
 BusinessLayer\DocenteCursoBO.class
+Utilities\Encriptador.class
 BusinessLayer\PagoMatriculaBO.class
 DataAccessLayer\CursoDAO.class
 BusinessLayer\DocenteBO.class

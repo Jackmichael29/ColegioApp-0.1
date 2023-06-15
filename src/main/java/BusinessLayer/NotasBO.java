@@ -25,6 +25,7 @@ public class NotasBO {
         try {
             NotasDAO notasDAO = new NotasDAO();
             notasDAO.insertar(notas);
+            System.out.println("llamado1");
         } catch (Exception e) {
             throw e;
         }     

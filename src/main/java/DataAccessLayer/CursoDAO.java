@@ -219,5 +219,166 @@ public class CursoDAO {
             }        
         }        
         return curso;     
+    }
+    
+    public ArrayList<Curso> buscarPorNivel(String cadena) throws Exception{
+     
+        ArrayList<Curso>cursos=new ArrayList<>();
+        Curso curso=null;
+        
+        Connection con=null;
+        CallableStatement cstm = null;  
+        ResultSet rs=null;
+        
+        try {            
+            con=UConnection.getConnection();
+            String sql="";            
+            sql="call sp_curso_buscar_por_nivel(?)";
+            cstm=con.prepareCall(sql);
+            cstm.setString(1, cadena);
+         
+            rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
+            
+            while(rs.next()){
+                curso = new Curso();
+                Area area = new Area();
+                
+                curso.setCurso_id(rs.getInt("curso_id"));
+                curso.setNombre(rs.getString("curso_nombre"));
+                curso.setGrado(rs.getString("grado").charAt(0));
+                curso.setNivel(rs.getString("nivel").charAt(0));                
+                curso.setArea_id(rs.getInt("area_id"));
+                
+                area.setArea_id(rs.getInt("area_id"));
+                area.setArea_nombre(rs.getString("area_nombre"));
+                
+                curso.setArea(area);
+                
+                
+                cursos.add(curso);
+            }
+            
+        }catch (Exception e) {         
+            Bitacora.registrar(e);
+            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
+        }finally{
+            try {
+                if(rs!=null)rs.close();
+                if(cstm!=null)cstm.close();                
+            } catch (Exception e) {
+                Bitacora.registrar(e);
+            }        
+        }        
+        return cursos;     
      }
+    
+    public ArrayList<Curso> buscarPorGrado(String grado, String nivel) throws Exception{
+     
+        ArrayList<Curso>cursos=new ArrayList<>();
+        Curso curso=null;
+        
+        Connection con=null;
+        CallableStatement cstm = null;  
+        ResultSet rs=null;
+        
+        try {            
+            con=UConnection.getConnection();
+            String sql="";            
+            sql="call sp_curso_buscar_por_grado(?,?)";
+            cstm=con.prepareCall(sql);
+            cstm.setString(1, grado);
+            cstm.setString(2, nivel);
+         
+            rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
+            
+            while(rs.next()){
+                curso = new Curso();
+                Area area = new Area();
+                
+                curso.setCurso_id(rs.getInt("curso_id"));
+                curso.setNombre(rs.getString("curso_nombre"));
+                curso.setGrado(rs.getString("grado").charAt(0));
+                curso.setNivel(rs.getString("nivel").charAt(0));                
+                curso.setArea_id(rs.getInt("area_id"));
+                
+                area.setArea_id(rs.getInt("area_id"));
+                area.setArea_nombre(rs.getString("area_nombre"));
+                
+                curso.setArea(area);
+                
+                
+                cursos.add(curso);
+            }
+            
+        }catch (Exception e) {     
+            System.out.println("Error aqui");
+            System.out.println(e);
+            Bitacora.registrar(e);
+            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
+        }finally{
+            try {
+                if(rs!=null)rs.close();
+                if(cstm!=null)cstm.close();                
+            } catch (Exception e) {
+                Bitacora.registrar(e);
+            }        
+        }        
+        return cursos;     
+     }
+    
+    
+    public ArrayList<Curso> buscarPorNivelYGrado(char nivel, char grado) throws Exception {
+
+        ArrayList<Curso> cursos = new ArrayList<>();
+        Curso curso = null;
+
+        Connection con = null;
+        CallableStatement cstm = null;
+        ResultSet rs = null;
+
+        try {
+            con = UConnection.getConnection();
+            String sql = "";
+            sql = "call sp_curso_buscar_por_nivel_y_grado(?,?)";
+            cstm = con.prepareCall(sql);
+            cstm.setString(1, String.valueOf(nivel));
+            cstm.setString(2, String.valueOf(grado));
+
+            rs = cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
+
+            while (rs.next()) {
+                curso = new Curso();
+                Area area = new Area();
+
+                curso.setCurso_id(rs.getInt("curso_id"));
+                curso.setNombre(rs.getString("curso_nombre"));
+                curso.setGrado(rs.getString("grado").charAt(0));
+                curso.setNivel(rs.getString("nivel").charAt(0));
+                curso.setArea_id(rs.getInt("area_id"));
+
+//                area.setArea_id(rs.getInt("area_id"));
+//                area.setArea_nombre(rs.getString("area_nombre"));
+
+                curso.setArea(area);
+
+                cursos.add(curso);
+            }
+
+        } catch (Exception e) {
+            Bitacora.registrar(e);
+            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (cstm != null) {
+                    cstm.close();
+                }
+            } catch (Exception e) {
+                Bitacora.registrar(e);
+            }
+        }
+        return cursos;
+    }
 }

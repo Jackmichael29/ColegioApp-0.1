@@ -79,4 +79,24 @@ public class AlumnoBO {
             throw e;
         }
     }
+    
+    public ArrayList<Alumno> buscarPorAlumnoxCursoBuscar(String cadena, String nombre, String grado, String nivel) throws Exception {
+
+        try {
+            AlumnoDao alumnoDAO = new AlumnoDao();
+            return alumnoDAO.buscarPorAlumnoxCursoBuscar(cadena, nombre, grado, nivel);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public ArrayList<Alumno> buscarPorAlumnoxCurso(String nombre, String grado, String nivel) throws Exception {
+
+        try {
+            AlumnoDao alumnoDAO = new AlumnoDao();
+            return alumnoDAO.buscarPorAlumnoxCurso(nombre, grado, nivel);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }
