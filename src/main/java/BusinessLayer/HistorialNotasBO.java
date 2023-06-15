@@ -66,4 +66,13 @@ public class HistorialNotasBO {
             throw e;
         }
     }
+    
+    public ArrayList<HistorialNotas> buscarPorCurso(String nombre, String nivel, String grado) throws Exception{
+        try {
+            HistorialNotasDAO hisDAO = new HistorialNotasDAO();
+            return hisDAO.buscarPorCurso(nombre, nivel, grado);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }

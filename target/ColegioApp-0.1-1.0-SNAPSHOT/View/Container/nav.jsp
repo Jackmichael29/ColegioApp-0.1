@@ -36,7 +36,7 @@
             <li><a href="${pageContext.request.contextPath}/Apoderado?action=index">Apoderados</a></li>
         </c:if> -->
             <li><a href="${pageContext.request.contextPath}/Alumno?action=index">Alumno</a></li>
-            <li><a href="${pageContext.request.contextPath}/Mantenimiento?action=index">Matricula</a></li>  
+            <li><a href="${pageContext.request.contextPath}/Matricula?action=new">Matricula</a></li>  
             <li><a href="${pageContext.request.contextPath}/Mantenimiento?action=index">Reportes</a></li> 
             <li><a href="${pageContext.request.contextPath}/Curso?action=index">Curso</a></li>        
             <li><a href="${pageContext.request.contextPath}/Area?action=index">Area</a></li>        

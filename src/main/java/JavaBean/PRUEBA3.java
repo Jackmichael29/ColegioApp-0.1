@@ -24,7 +24,6 @@ public class PRUEBA3 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        // TODO code application logic here
         Connection con = null;
         CallableStatement cstm = null;
         PagoMatriculaDAO pagoMatDAO = new PagoMatriculaDAO();

@@ -16,6 +16,33 @@ public class HistorialNotas {
     private int alumno_id;
     private int curso_id;
     private double promedio;
+    private Alumno alumno;
+    private Notas nota;
+    private Curso curso;
+
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
+    }
+
+    public Notas getNota() {
+        return nota;
+    }
+
+    public void setNota(Notas nota) {
+        this.nota = nota;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
     
     private Map<String,String> errores = new HashMap<>();
     
