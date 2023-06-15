@@ -50,14 +50,13 @@ public class MatriculaDAO {
             cstm = con.prepareCall(sql);
 
             for (Curso obj : cursosMatricula) {
-                for (int i = 1; i <= 4; i++) {
 
-                    cstm.setInt(1, matricula.getAlumno_id());
-                    cstm.setInt(2, obj.getCurso_id());
-                    cstm.setInt(3, 0);
+                cstm.setInt(1, matricula.getAlumno_id());
+                cstm.setInt(2, obj.getCurso_id());
+                cstm.setInt(3, 0);
 
-                    cstm.addBatch();
-                }
+                cstm.addBatch();
+
             }
             cstm.executeBatch();
 
