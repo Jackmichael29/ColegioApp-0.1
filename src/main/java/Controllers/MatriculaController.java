@@ -101,54 +101,46 @@ public class MatriculaController extends HttpServlet {
     private void searchAlumByApenom(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, Exception {
         
-        String  apeNom=request.getParameter("alumno");        
+        String  apeNom=request.getParameter("alumno");     
+        System.out.println("BUSCANDO");
+        System.out.println(apeNom);
         
         AlumnoBO alumnoBO= new AlumnoBO(); 
         ArrayList<Alumno> alumnos=alumnoBO.buscarPorAlumno(apeNom);
+        System.out.println(alumnos.size());
         request.setAttribute("alumnos", alumnos);
         
         getServletContext().getRequestDispatcher(PATH_SEARCH_ALU_BY_APENOM).forward(request, response);
         
-
     }
     
     private void searchAlumById(HttpServletRequest request, HttpServletResponse response)
-    throws SQLException, IOException, Exception {
-        
-        int  id=Integer.valueOf(request.getParameter("alumnoId"));
-        
-        AlumnoBO alumnoBO= new AlumnoBO(); 
-        Alumno alumno=alumnoBO.buscarPorId(id);
+            throws SQLException, IOException, Exception {
+
+        int id = Integer.valueOf(request.getParameter("alumnoId"));
+
+        AlumnoBO alumnoBO = new AlumnoBO();
+        Alumno alumno = alumnoBO.buscarPorId(id);
         //request.setAttribute("alumno", alumno);
-        
-        
-    Map<String, String> options = new LinkedHashMap<String, String>();
-    
+
+        Map<String, String> options = new LinkedHashMap<String, String>();
+
         //---nota: tener cuidsado con los objetos con campos date, localdate. Para ello hay que serializar y desserializar
-    
-        options.put("alumnoId",String.valueOf(alumno.getAlumno_id()));
+        options.put("alumnoId", String.valueOf(alumno.getAlumno_id()));
         options.put("apellidosNombres", alumno.getApellidosNombres());
-   
-        
+
         Gson gson = new Gson();
-        
+
         String alumnoJsonString = gson.toJson(options);
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         out.write(alumnoJsonString);
-        
-        
 
-        
-        
-       // out.print(alumnoJsonString);
-       //out.flush();
-        
+        // out.print(alumnoJsonString);
+        //out.flush();
         //request.setAttribute("alumno", alumno);  
-       // getServletContext().getRequestDispatcher(PATH_SEARCH_ALU_BY_ID).forward(request, response);
-        
-
+        // getServletContext().getRequestDispatcher(PATH_SEARCH_ALU_BY_ID).forward(request, response);
     }
     
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
@@ -164,12 +156,12 @@ public class MatriculaController extends HttpServlet {
         Alumno alumno = new Alumno();
         Matricula matricula = new Matricula();
 
-        alumno.setAlumno_id(Integer.valueOf(request.getParameter("alumnoId")));
+        alumno.setAlumno_id(Integer.parseInt(request.getParameter("alumnoId")));
+        matricula.setAlumno_id(Integer.parseInt(request.getParameter("alumnoId")));
 
         matricula.setGrado(request.getParameter("grado").charAt(0));
         matricula.setNivel(request.getParameter("nivel").charAt(0));
         matricula.setTurno(request.getParameter("turno").charAt(0));
-
         try {
             matricula.setFecha(LocalDate.parse(request.getParameter("fecha"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         } catch (DateTimeParseException e) {
@@ -180,7 +172,11 @@ public class MatriculaController extends HttpServlet {
 
         if (errores.isEmpty()) {
             MatriculaBO matriculaBO = new MatriculaBO();
-            matriculaBO.insertarMatricula(matricula);
+            try {
+                matriculaBO.insertarMatricula(matricula);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
             request.setAttribute("mensaje", "El registro fué insertado con éxito");
             getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);
         } else {

@@ -142,7 +142,7 @@ public class ApoderadoController extends HttpServlet {
         apoderado.setApellido_materno(request.getParameter("apellidoMaterno"));
         apoderado.setNombres(request.getParameter("nombres"));
         apoderado.setContacto(request.getParameter("contacto"));
-                 
+        
         Map<String,String>errores = apoderado.getErrores();
                    
         if(errores.isEmpty()){                
