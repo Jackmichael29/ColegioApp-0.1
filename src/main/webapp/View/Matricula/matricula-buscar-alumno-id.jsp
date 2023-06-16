@@ -15,7 +15,7 @@
 
 <%
     JSONObject json = new JSONObject();
-    json.put("alumnoId", "15");
+    json.put("alumno_id", "15");
     json.put("apellidosNombres", "rivera");
     out.print(json);
     out.flush();

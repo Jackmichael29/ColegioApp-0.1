@@ -30,7 +30,8 @@ public class MatriculaDAO {
             con = UConnection.getConnection();
 
             con.setAutoCommit(false);
-
+            System.out.println("Estamos insertando matricula");
+            System.out.println("apuesto a que aqui esta el error" + matricula.getAlumno_id());
             String sql = "call sp_matricula_insertar(?,?,?,?,?,?)";
             cstm = con.prepareCall(sql);
 
@@ -41,24 +42,29 @@ public class MatriculaDAO {
             cstm.setString(5, String.valueOf(matricula.getTurno()));
             cstm.setInt(6, matricula.getAlumno_id());
 
-            cstm.execute();
+            cstm.executeUpdate();
+
+            matricula.setMatricula_id(cstm.getInt(1));
 
             CursoDAO cursoDAO = new CursoDAO();
             ArrayList<Curso> cursosMatricula = cursoDAO.buscarPorNivelYGrado(matricula.getNivel(), matricula.getGrado());
 
-            sql = "call sp_historial_notas_insertar(?,?,?)";
+            //Creacion de historial notas
+            sql = "call sp_historial_notas_insertar(?,?,?,?)";
             cstm = con.prepareCall(sql);
 
             for (Curso obj : cursosMatricula) {
-
-                cstm.setInt(1, matricula.getAlumno_id());
-                cstm.setInt(2, obj.getCurso_id());
-                cstm.setInt(3, 0);
+                cstm.registerOutParameter(1, java.sql.Types.INTEGER);
+                cstm.setInt(2, matricula.getAlumno_id());
+                cstm.setInt(3, obj.getCurso_id());
+                cstm.setInt(4, 0);
 
                 cstm.addBatch();
 
             }
             cstm.executeBatch();
+            HistorialNotas hnts = new HistorialNotas();
+            hnts.setHistorial_id(cstm.getInt(1));
 
             con.commit();
         } catch (Exception e) {

@@ -38,14 +38,15 @@
             <form action="${pageContext.request.contextPath}/Matricula?action=insert" method="post">            
              
              
-            <div class="mb-3">                
+            <div class="mb-3">   
+                <label>ID del Alumno</label>
                 <input type="text" name="alumnoId" id="alumnoId" autocomplete="off" class="form-control"/>                         
             </div>  
              <button type="button" id="buscarAlumno">Buscar alumno</button>
                 
             <div class="mb-3">    
                 <label for="apellidosNombres" class="form-label">Apellidos y nombres</label>
-                <input type="text" name="apellidosNombres" id="apellidosNombres" autocomplete="off" class="form-control"/>                         
+                <input type="text" name="apellidosNombres" id="apellidosNombres" autocomplete="off" class="form-control"/>                     
             </div>  
             
           
@@ -74,7 +75,7 @@
             </div> 
                 
             <div class="mb-3">
-                <label for="nivel">Elige un turno:</label>
+                <label for="turno">Elige un turno:</label>
                 <select name="turno" id="turno">
                     <option value="">--seleccionar--</option>
                     <option value="m" ${(matricula!=null && matricula.turno=="M")? "selected":""}>M</option>
@@ -181,7 +182,7 @@
         function changeIncidentValue(elem){
 
           var alumnoId=$(elem).find('td:first').text();       
-          //alert(alumnoId);     
+          alert(alumnoId);     
 
           $.ajax({
           type:'POST',
@@ -191,10 +192,9 @@
           success:function(data){            
       
             let alumno = JSON.parse(JSON.stringify(data)); 
-          
-            $('#alumnoId').val(alumno.alumnoId);
+            
+            $('#alumnoId').val(alumnoId);
             $('#apellidosNombres').val(alumno.apellidosNombres);
-   
           }
           });
         }

@@ -25,7 +25,7 @@
             <tbody>
             <c:forEach items="${alumnos}" var="a">
             <tr onclick="changeIncidentValue(this)">
-                <td>${a.alumnoId}</td>             
+                <td>${a.alumno_id}</td>             
                 <td>${a.apellidosNombres}</td>                             
             </tr>
             </c:forEach>
