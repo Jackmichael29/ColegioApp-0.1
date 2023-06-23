@@ -21,12 +21,12 @@ public class UsuarioBO {
     
     public void loguin(Usuario usuario) throws Exception{
         
-//        try {
-//            UsuarioDAO usuarioDAO = new UsuarioDAO();
-//            usuarioDAO.loguin(usuario);
-//        } catch (Exception e) {
-//            throw e;
-//        }
+        try {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            usuarioDAO.loguin(usuario);
+        } catch (Exception e) {
+            throw e;
+        }
         
      }   
     
@@ -55,7 +55,6 @@ public class UsuarioBO {
         try {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.eliminar(id);
-            System.out.println("eliminando: " + id);
         } catch (Exception e) {
             throw e;
         }        
@@ -93,11 +92,11 @@ public class UsuarioBO {
         }     
      }
 
-      public void cambiarClave(Usuario usuario) throws Exception{ 
+      public void cambiarClave(Usuario usuario, String nueva) throws Exception{ 
           
         try {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
-            usuarioDAO.cambiarClave(usuario);
+            usuarioDAO.cambiarClave(usuario, nueva);
         } catch (Exception e) {
             throw e;
         }

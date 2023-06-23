@@ -5,7 +5,10 @@
 package DataAccessLayer;
 
 import Connection.UConnection;
+import JavaBean.Alumno;
+import JavaBean.Curso;
 import JavaBean.HistorialNotas;
+import JavaBean.Notas;
 import Utilities.Bitacora;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -41,7 +44,12 @@ public class HistorialNotasDAO {
             if(cont==0){
                 cstm.setInt(1, hnotas.getAlumno_id());
                 cstm.setInt(2, hnotas.getCurso_id());
-                cstm.setDouble(3, hnotas.getPromedio());
+                
+                Double promedio = hnotas.getPromedio();
+                if(promedio == null)
+                    cstm.setNull(3, java.sql.Types.DOUBLE);
+                else
+                    cstm.setDouble(3, hnotas.getPromedio());
                 cstm.execute();
             }else{
                throw new Exception("No se pudo registrar el historial notas");
@@ -245,5 +253,73 @@ public class HistorialNotasDAO {
             }        
         }        
         return hnotas;     
+     }
+    
+    
+    public ArrayList<HistorialNotas> buscarPorCurso(String nombre, String nivel, String grado) throws Exception{
+        HistorialNotas hnotas = new HistorialNotas();
+        ArrayList<HistorialNotas> hnotasl = new ArrayList<>();
+        Notas notas=new Notas();
+        Alumno alumno = new Alumno();
+        Curso curso = new Curso();
+        
+        Connection con=null;
+        CallableStatement cstm = null;  
+        ResultSet rs=null;
+        
+        try {            
+            con=UConnection.getConnection();
+            String sql="";            
+            sql="call sp_notas_mostrar_por_curso(?,?,?)";//es historial notas no notas
+            cstm=con.prepareCall(sql);
+            cstm.setString(1, nombre);
+            cstm.setString(2, grado);
+            cstm.setString(3, nivel);
+            rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones 
+            
+            while(rs.next()){
+                hnotas = new HistorialNotas();
+                notas = new Notas();
+                alumno = new Alumno();
+                curso = new Curso();
+                
+                hnotas.setHistorial_id(rs.getInt("historial_notas_id"));
+            
+                notas.setHistorial_notas_id(rs.getInt("historial_notas_id"));
+                notas.setNota1(rs.getDouble("nota1"));
+                notas.setNota2(rs.getDouble("nota2"));
+                notas.setNota3(rs.getDouble("nota3"));
+                notas.setNota4(rs.getDouble("nota4"));
+                notas.setNota5(rs.getDouble("nota5"));
+
+                alumno.setAlumno_id(rs.getInt("alumno_id"));
+                alumno.setApellidosNombres(rs.getString("Apellidos y Nombres"));
+
+
+                curso.setCurso_id(rs.getInt("curso_id"));
+                curso.setNivel(rs.getString("nivel").charAt(0));
+                curso.setGrado(rs.getString("grado").charAt(0));
+                curso.setNombre(rs.getString("nombre"));
+
+                hnotas.setNota(notas);
+                hnotas.setCurso(curso);
+                hnotas.setAlumno(alumno);
+
+                hnotasl.add(hnotas);
+            }
+        }catch (Exception e) {   
+            System.out.println("Resuelve aqui");
+            System.out.println(e);
+            Bitacora.registrar(e);
+            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
+        }finally{
+            try {
+                if(rs!=null)rs.close();
+                if(cstm!=null)cstm.close();                
+            } catch (Exception e) {
+                Bitacora.registrar(e);
+            }        
+        }        
+        return hnotasl;     
      }
 }

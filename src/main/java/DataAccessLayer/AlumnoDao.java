@@ -7,6 +7,7 @@ package DataAccessLayer;
 
 import Connection.UConnection;
 import JavaBean.Alumno;
+import JavaBean.HistorialNotas;
 import Utilities.Bitacora;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -47,10 +48,10 @@ public class AlumnoDao {
             //alumno.setAlumno_id(csmt.getInt(1));
 
         } catch (Exception e) {
-            if (e.getMessage().contains("dni")) {
+            if (e.getMessage().contains("idx_alumno_dni")) {
                 throw new Exception("El DNI ingresado ya existe en la base de datos");
             }
-            if (e.getMessage().contains("correo_electronico")) {
+            if (e.getMessage().contains("idx_alumno_correo_electronico")) {
                 throw new Exception("El Correo electrónico ingresado ya existe en la base de datos");
             }
             throw e;
@@ -154,15 +155,17 @@ public class AlumnoDao {
                 alumno = new Alumno();
                 alumno.setAlumno_id(rs.getInt("alumno_id"));
                 alumno.setDni(rs.getString("dni"));
-                //alumno.setApellidosNombres(rs.getString("apellidos_nombres"));
-                String[] nombres = rs.getString("apellidos_nombres").replace(",", "").split(" ");
                 alumno.setApellidosNombres(rs.getString("apellidos_nombres"));
+                String[] nombres = rs.getString("apellidos_nombres").replace(",", "").split(" ");
+                System.out.println(rs.getString("apellidos_nombres"));
                 alumno.setApellido_paterno(nombres[0]);
                 alumno.setApellido_materno(nombres[1]);
                 
                 if (nombres.length < 4) alumno.setNombres(nombres[2]);
                 else alumno.setNombres(nombres[2]+" "+nombres[3]); 
+                
                 alumno.setCorreo_electrico(rs.getString("correo_electronico"));
+                System.out.println(rs.getString("correo_electronico"));
                 alumno.setFecha_nacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
                 
                 alumnos.add(alumno);
@@ -229,7 +232,7 @@ public class AlumnoDao {
         Connection con=null;
         CallableStatement cstm = null;  
         ResultSet rs=null;
-         System.out.println("Somos usados ID");
+        
         try {            
             con=UConnection.getConnection();
             String sql="";            
@@ -243,18 +246,7 @@ public class AlumnoDao {
                 alumno = new Alumno();
                 alumno.setAlumno_id(rs.getInt("alumno_id"));
                 alumno.setDni(rs.getString("dni"));
-                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));  
-                
-                String[] nombres = rs.getString("apellidos_nombres").replace(",", "").split(" ");
-                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));
-                alumno.setApellido_paterno(nombres[0]);
-                alumno.setApellido_materno(nombres[1]);
-                
-                if (nombres.length < 4) alumno.setNombres(nombres[2]);
-                else alumno.setNombres(nombres[2]+" "+nombres[3]); 
-                
-                alumno.setCorreo_electrico(rs.getString("correo_electronico"));
-                alumno.setFecha_nacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
+                alumno.setApellidosNombres(rs.getString("apellidos_nombres"));                             
             }
             
         } catch (Exception e) {         
@@ -269,8 +261,127 @@ public class AlumnoDao {
             }        
         }        
         return alumno;     
-     }
     }
+     
+    public ArrayList<Alumno> buscarPorAlumnoxCursoBuscar(String cadena, String nombre, String grado, String nivel) throws Exception{
+     
+        ArrayList<Alumno>alumnos=new ArrayList<>();
+        Alumno alumno=null;
+        
+        Connection con=null;
+        CallableStatement cstm = null;  
+        ResultSet rs=null;
+        
+        try {            
+            con=UConnection.getConnection();
+            String sql="";            
+            sql="call sp_alumno_buscar_por_alumno(?,?,?,?)";
+            cstm=con.prepareCall(sql);
+            cstm.setString(1, cadena);
+            cstm.setString(2, nombre);
+            cstm.setString(3, grado);
+            cstm.setString(4, nivel);
+         
+            rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
+            
+            while(rs.next()){
+                alumno = new Alumno();
+                alumno.setAlumno_id(rs.getInt("alumno_id"));
+                alumno.setDni(rs.getString("dni"));
+                //alumno.setApellidosNombres(rs.getString("apellidos_nombres"));
+                String[] nombres = rs.getString("apellidos_nombres").replace(",", "").split(" ");
+                System.out.println(rs.getString("apellidos_nombres"));
+                alumno.setApellido_paterno(nombres[0]);
+                alumno.setApellido_materno(nombres[1]);
+                
+                if (nombres.length < 4) alumno.setNombres(nombres[2]);
+                else alumno.setNombres(nombres[2]+" "+nombres[3]); 
+                
+                alumno.setCorreo_electrico(rs.getString("correo_electronico"));
+                System.out.println(rs.getString("correo_electronico"));
+                alumno.setFecha_nacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
+                
+                alumnos.add(alumno);
+            }
+            
+        }catch (Exception e) {         
+            Bitacora.registrar(e);
+            System.out.println(e);
+            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
+        }finally{
+            try {
+                if(rs!=null)rs.close();
+                if(cstm!=null)cstm.close();                
+            } catch (Exception e) {
+                Bitacora.registrar(e);
+            }        
+        }        
+        return alumnos;     
+     }
+    
+    
+    public ArrayList<Alumno> buscarPorAlumnoxCurso(String nombre, String grado, String nivel) throws Exception{
+     
+        ArrayList<Alumno>alumnos=new ArrayList<>();
+        Alumno alumno= new Alumno();
+        HistorialNotas hn = new HistorialNotas();
+        
+        Connection con=null;
+        CallableStatement cstm = null;  
+        ResultSet rs=null;
+        
+        try {            
+            con=UConnection.getConnection();
+            String sql="";            
+            sql="call sp_alumno_buscar_alumno_por_curso(?,?,?)";
+            cstm=con.prepareCall(sql);
+            cstm.setString(1, nombre);
+            cstm.setString(2, nivel);
+            cstm.setString(3, grado);
+         
+            rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
+            
+            while(rs.next()){
+                alumno = new Alumno();
+                hn = new HistorialNotas();
+                
+                alumno.setAlumno_id(rs.getInt("alumno_id"));
+                alumno.setApellidosNombres(rs.getString("Apellidos y Nombres"));
+
+                hn.setHistorial_id(rs.getInt("historial_notas_id"));
+                System.out.println("este valor viene del DAO +++ " + rs.getInt("historial_notas_id"));
+                hn.setCurso_id(rs.getInt("curso_id"));
+                hn.setAlumno_id(rs.getInt("alumno_id"));
+//                if (nombres.length < 4) alumno.setNombres(nombres[2]);
+//                else alumno.setNombres(nombres[2]+" "+nombres[3]);
+                alumno.setHnot(hn);
+                System.out.println("valores anadidos por el dao en el objeto: "+ hn.getHistorial_id());
+                System.out.println("valor cambiado en el alumno: " + alumno.getHnot().getHistorial_id());
+                alumnos.add(alumno);
+            }
+            
+        }catch (Exception e) {         
+            Bitacora.registrar(e);
+            System.out.println(e);
+            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
+        }finally{
+            try {
+                if(rs!=null)rs.close();
+                if(cstm!=null)cstm.close();                
+            } catch (Exception e) {
+                Bitacora.registrar(e);
+            }        
+        }
+        System.out.println("DAOOOO+++");
+        System.out.println(alumnos.get(0).getApellidosNombres());
+        System.out.println(alumnos.get(0).getHnot().getHistorial_id());
+        System.out.println(alumnos.get(1).getApellidosNombres());
+        System.out.println(alumnos.get(1).getHnot().getHistorial_id());
+        System.out.println("DAOOOO+++");
+        
+        return alumnos;     
+     }
+}
 
 
 

@@ -183,7 +183,7 @@ public class UsuarioController extends HttpServlet {
                    
         if(errores.isEmpty()){                
            UsuarioBO usuarioBO= new UsuarioBO();          
-           usuarioBO.cambiarClave(usuario);
+           usuarioBO.cambiarClave(usuario, "new clave");
            request.setAttribute("mensaje", "La clave se cambio con éxito");  
            getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);
         }else{
