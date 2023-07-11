@@ -43,6 +43,7 @@
             <li><a href="${pageContext.request.contextPath}/Mantenimiento?action=index">Notas</a></li>   
             <li><a href="${pageContext.request.contextPath}/Mantenimiento?action=index">Pagos</a></li>
             <li><a href="${pageContext.request.contextPath}/Mantenimiento?action=index">Asistencia Docentes</a></li>
+            <li><a href="${pageContext.request.contextPath}/Mantenimiento?action=index">Asistencia Alumnos</a></li>
             <li><a href="${pageContext.request.contextPath}/Usuario?action=index">Usuarios</a></li>
             <li><a href="${pageContext.request.contextPath}/Docente?action=index">Docentes</a></li>
             <li><a href="${pageContext.request.contextPath}/Apoderado?action=index">Apoderados</a></li>
