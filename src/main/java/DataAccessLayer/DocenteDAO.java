@@ -82,7 +82,7 @@ public class DocenteDAO {
         try {            
             con=UConnection.getConnection();
             String sql="";            
-            sql="call sp_docente_buscar_por_dni_docente(?)"; //CREAR PROCEDURE SI NO EXISTE
+            sql="call sp_docente_buscar_por_dni(?)"; //CREAR PROCEDURE SI NO EXISTE
             cstm=con.prepareCall(sql);
             cstm.setString(1, cadena);
          
@@ -92,9 +92,9 @@ public class DocenteDAO {
                 docente = new Docente();
                 docente.setDocente_id(rs.getInt("docente_id"));
                 docente.setDni(rs.getString("dni"));
-                //docente.setApellidosNombres(rs.getString("apellidos_nombres"));
-                String[] nombres = rs.getString("apellidos_nombres").replace(",", "").split(" ");
-                System.out.println(rs.getString("apellidos_nombres"));
+                docente.setApellidosNombres(rs.getString("docente"));
+                String[] nombres = rs.getString("docente").replace(",", "").split(" ");
+                System.out.println(rs.getString("docente"));
                 docente.setApellido_paterno(nombres[0]);
                 docente.setApellido_materno(nombres[1]);
                 
@@ -108,6 +108,7 @@ public class DocenteDAO {
             
         }catch (Exception e) {         
             Bitacora.registrar(e);
+            System.out.println(e);
             throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
         }finally{
             try {

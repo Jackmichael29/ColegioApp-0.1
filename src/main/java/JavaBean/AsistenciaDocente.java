@@ -15,8 +15,17 @@ public class AsistenciaDocente {
     private Time hora_salida;
     private LocalDate fecha;
     private int docente_id;
+    private Docente docente;
     
     private Map<String,String> errores = new HashMap<>();
+
+    public Docente getDocente() {
+        return docente;
+    }
+
+    public void setDocente(Docente docente) {
+        this.docente = docente;
+    }
     
     public Map<String, String> getErrores() {
         return errores;
@@ -29,8 +38,16 @@ public class AsistenciaDocente {
     public AsistenciaDocente(){
     }
     
-    public AsistenciaDocente(String dniDocente, Time horaIngreso){
-        
+    public AsistenciaDocente(int docenteId, Time horaIngreso, LocalDate fecha){
+        this.docente_id = docenteId;
+        this.hora_ingreso = horaIngreso;
+        this.fecha = fecha;
+    }
+    
+    public AsistenciaDocente(int docenteId, Time horaIngreso, LocalDate fecha, Boolean str){
+        this.docente_id = docenteId;
+        this.hora_salida = horaIngreso;
+        this.fecha = fecha;
     }
 
     public int getAsistencia_id() {

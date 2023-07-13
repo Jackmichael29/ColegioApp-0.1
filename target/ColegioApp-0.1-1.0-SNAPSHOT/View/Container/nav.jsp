@@ -42,7 +42,7 @@
             <li><a href="${pageContext.request.contextPath}/Area?action=index">Area</a></li>        
             <li><a href="${pageContext.request.contextPath}/Nota?action=index">Notas</a></li>   
             <li><a href="${pageContext.request.contextPath}/Mantenimiento?action=index">Pagos</a></li>
-            <li><a href="${pageContext.request.contextPath}/Mantenimiento?action=index">Asistencia Docentes</a></li>
+            <li><a href="${pageContext.request.contextPath}/AsistenciaDocentes?action=index">Asistencia Docentes</a></li>
             <li><a href="${pageContext.request.contextPath}/AsistenciaAlumnos?action=index">Asistencia Alumnos</a></li>
             <li><a href="${pageContext.request.contextPath}/Usuario?action=index">Usuarios</a></li>
             <li><a href="${pageContext.request.contextPath}/Docente?action=index">Docentes</a></li>
