@@ -54,7 +54,7 @@ public class PagoPensionDAO {
             con = UConnection.getConnection();
             String sql = "call sp_pagoPensiones_actualizar(?,?,?,?,?)";
             cstm=con.prepareCall(sql);
-            cstm.setInt(1, pagoPe.getPago_pensiones_id());
+            cstm.setInt(1, pagoPe.getPago_id());
             
             cstm.setDate(2, Date.valueOf(pagoPe.getFecha()) );
             cstm.setDouble(3, pagoPe.getMonto());
@@ -112,7 +112,7 @@ public class PagoPensionDAO {
             
             while(rs.next()){
                 pagoPen = new pagoPensiones();
-                pagoPen.setPago_pensiones_id(rs.getInt("pago_pensiones_id")); 
+                pagoPen.setPago_id(rs.getInt("pago_pensiones_id")); 
                 pagoPen.setFecha(rs.getDate("fecha").toLocalDate());
                 pagoPen.setMonto(rs.getDouble("monto"));
                 
@@ -150,7 +150,7 @@ public class PagoPensionDAO {
             
             while(rs.next()){
                 pagoPen = new pagoPensiones();
-                pagoPen.setPago_pensiones_id(rs.getInt("pago_pensiones_id")); 
+                pagoPen.setPago_id(rs.getInt("pago_pensiones_id")); 
                 pagoPen.setFecha(rs.getDate("fecha").toLocalDate());
                 pagoPen.setMonto(rs.getDouble("monto"));
                 
@@ -158,6 +158,8 @@ public class PagoPensionDAO {
                     pagoPen.setObservacion(rs.getString("observacion"));     
                 
                 pagoPen.setAlumno_id(rs.getInt("alumno_id"));
+                
+                pagoPen.setTipo(2);
                 
                 pagoPes.add(pagoPen);
             }

@@ -39,7 +39,7 @@ public class PRUEBA3 {
             obj1.setFecha(LocalDate.now());
             obj1.setMonto(2000.12);
             obj1.setObservacion("Se pago con efectivo");
-            obj1.setPago_matricula_id(2);
+            obj1.setPago_id(2);
             pagoMatDAO.actualizarPagoMatricula(obj1);
             
             System.out.println(pagoMatDAO.listarPagoMatricula().size());
@@ -50,7 +50,7 @@ public class PRUEBA3 {
             obj2.setFecha(LocalDate.now());
             obj2.setMonto(60.212);
             obj2.setObservacion("Se pago con efectivo");
-            obj2.setPago_pensiones_id(1);
+            obj2.setPago_id(1);
             pagoPeDAO.actualizarPagoPension(obj2);
             
             pagoVarios obj3 = new pagoVarios();
@@ -61,7 +61,7 @@ public class PRUEBA3 {
             obj3.setFecha(LocalDate.now());
             obj3.setMonto(30.99);
             obj3.setObservacion("Se pago con efectivo");
-            obj3.setPago_varios_id(1);
+            obj3.setPago_id(1);
             pagoVarDAO.actualizarPagoVarios(obj3);
             
             System.out.println(pagoVarDAO.listarPagoVarios().size());

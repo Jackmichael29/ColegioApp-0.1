@@ -53,7 +53,7 @@ public class PagoMatriculaDAO {
             con = UConnection.getConnection();
                 String sql = "call sp_pagoMatricula_actualizar(?,?,?,?,?)";
             cstm=con.prepareCall(sql);
-            cstm.setInt(1, pagoMat.getPago_matricula_id());
+            cstm.setInt(1, pagoMat.getPago_id());
             
             cstm.setDate(2, Date.valueOf(pagoMat.getFecha()) );
             cstm.setDouble(3, pagoMat.getMonto());
@@ -111,7 +111,7 @@ public class PagoMatriculaDAO {
             
             while(rs.next()){
                 pagoMat = new pagoMatricula();
-                pagoMat.setPago_matricula_id(rs.getInt("pago_matricula_id")); 
+                pagoMat.setPago_id(rs.getInt("pago_matricula_id")); 
                 pagoMat.setFecha(rs.getDate("fecha").toLocalDate());
                 pagoMat.setMonto(rs.getDouble("monto"));
                 
@@ -152,7 +152,7 @@ public class PagoMatriculaDAO {
             
             while(rs.next()){
                 pagoMat = new pagoMatricula();
-                pagoMat.setPago_matricula_id(rs.getInt("pago_matricula_id")); 
+                pagoMat.setPago_id(rs.getInt("pago_matricula_id")); 
                 pagoMat.setFecha(rs.getDate("fecha").toLocalDate());
                 pagoMat.setMonto(rs.getDouble("monto"));
                 
@@ -161,6 +161,7 @@ public class PagoMatriculaDAO {
                 
                 pagoMat.setAlumno_id(rs.getInt("alumno_id"));
                 
+                pagoMat.setTipo(1);
                 
                 pagoMats.add(pagoMat);
             }

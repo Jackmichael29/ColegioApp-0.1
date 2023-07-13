@@ -13,10 +13,20 @@ import java.util.Map;
  * @author black
  */
 public class pagoVarios {
-    private int pago_varios_id;
+    private int pago_id;
     private LocalDate fecha;
     private double monto;
     private String observacion;
+    
+    private int tipo;
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
     
     private int alumno_id;
     
@@ -33,12 +43,12 @@ public class pagoVarios {
     public pagoVarios(){
     }
 
-    public int getPago_varios_id() {
-        return pago_varios_id;
+    public int getPago_id() {
+        return pago_id;
     }
 
-    public void setPago_varios_id(int pago_varios_id) {
-        this.pago_varios_id = pago_varios_id;
+    public void setPago_id(int pago_id) {
+        this.pago_id = pago_id;
     }
 
     public LocalDate getFecha() {

@@ -54,7 +54,7 @@ public class PagoVariosDAO {
             con = UConnection.getConnection();
             String sql = "call sp_pagoVarios_actualizar(?,?,?,?,?)";
             cstm=con.prepareCall(sql);
-            cstm.setInt(1, pagoVar.getPago_varios_id());
+            cstm.setInt(1, pagoVar.getPago_id());
             
             cstm.setDate(2, Date.valueOf(pagoVar.getFecha()) );
             cstm.setDouble(3, pagoVar.getMonto());
@@ -112,7 +112,7 @@ public class PagoVariosDAO {
             
             while(rs.next()){
                 pagoVar = new pagoVarios();
-                pagoVar.setPago_varios_id(rs.getInt("pago_varios_id")); 
+                pagoVar.setPago_id(rs.getInt("pago_varios_id")); 
                 pagoVar.setFecha(rs.getDate("fecha").toLocalDate());
                 pagoVar.setMonto(rs.getDouble("monto"));
                 
@@ -150,7 +150,7 @@ public class PagoVariosDAO {
             
             while(rs.next()){
                 pagoVar = new pagoVarios();
-                pagoVar.setPago_varios_id(rs.getInt("pago_varios_id"));
+                pagoVar.setPago_id(rs.getInt("pago_varios_id"));
                 pagoVar.setFecha(rs.getDate("fecha").toLocalDate());
                 pagoVar.setMonto(rs.getDouble("monto"));
                 
@@ -158,6 +158,8 @@ public class PagoVariosDAO {
                     pagoVar.setObservacion(rs.getString("descripcion"));      
                 
                 pagoVar.setAlumno_id(rs.getInt("alumno_id"));
+                
+                pagoVar.setTipo(3);
                 
                 pagoVars.add(pagoVar);
               
