@@ -70,6 +70,7 @@ public class AreaController extends HttpServlet {
                     break;                           
             }
             } catch (Exception e) {
+                System.out.println(e);
                 throw new ServletException(e);
             }   
         
@@ -91,10 +92,15 @@ public class AreaController extends HttpServlet {
     private void index(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, Exception {
       
-        String  areaNom = request.getParameter("areaNombre");
-        
+        String  areaNom = request.getParameter("nombreArea");
+        System.out.println("lo que obtienes es: ");
+        System.out.println(areaNom);
+        if(areaNom == null){
+            areaNom = "";
+        }
         AreaBO areaBO = new AreaBO(); 
         ArrayList<Area> areas = areaBO.buscarPorArea(areaNom);
+//        ArrayList<Area> areas = areaBO.buscarPorArea("");
         request.setAttribute("areas", areas);
     
         getServletContext().getRequestDispatcher(PATH_INDEX).forward(request, response);

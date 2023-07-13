@@ -16,6 +16,9 @@ CSS PARA EL BOTON
     *
     *
 */
+.btn2{
+    width: 120px;
+}
 
 .button1 {
   color: white;
@@ -24,10 +27,10 @@ CSS PARA EL BOTON
   border-radius: 0.5rem;
   font-size: 1rem;
   line-height: 2rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
   text-align: center;
   margin-right: 0.5rem;
   display: inline-flex;

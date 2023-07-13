@@ -73,7 +73,7 @@ public class AreaBO {
                throw new Exception("El argumento no puede exceder de 60 caracteres");                    
             }            
             AreaDAO areaDAO = new AreaDAO();
-            return areaDAO.listar();
+            return areaDAO.buscarPorArea(cadena);
         } catch (Exception e) {
             throw e;
         }        
