@@ -60,10 +60,13 @@
                     <label for="grado" class="form-label">Grado</label> <br>
                     <select id="grado" name="grado" class="form-control">
                         <option value="0">Seleccionar</option>
-                        <option value="I">Inicial</option>
-                        <option value="P">Primaria</option>
-                        <option value="S">Secundaria</option>
-                    </select>
+                        <option value="1">1er Grado</option>
+                        <option value="2">2do Grado</option>
+                        <option value="3">3er Grado</option>
+                        <option value="4">4to Grado</option>
+                        <option value="5">5to Grado</option>
+                        <option value="6">6to Grado</option>
+                    </select> 
                     <c:if test="${errores != null && not empty errores.grado}">
                     <div style="color:red;">${errores.grado}</div>
                     </c:if>    

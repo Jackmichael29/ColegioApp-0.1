@@ -144,17 +144,18 @@ public class NotasDAO {
          
             rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
             
-            
-            notas.setHistorial_notas_id(rs.getInt("historial_notas_id"));
-            notas.setNota1(rs.getDouble("nota1"));
-            notas.setNota2(rs.getDouble("nota2"));
-            notas.setNota3(rs.getDouble("nota3"));
-            notas.setNota4(rs.getDouble("nota4"));
-            notas.setNota5(rs.getDouble("nota5"));
-            
+            if(rs.next()){
+                notas.setHistorial_notas_id(rs.getInt("historial_notas_id"));
+                notas.setNota1(rs.getDouble("nota1"));
+                notas.setNota2(rs.getDouble("nota2"));
+                notas.setNota3(rs.getDouble("nota3"));
+                notas.setNota4(rs.getDouble("nota4"));
+                notas.setNota5(rs.getDouble("nota5"));
+            }
             
         }catch (Exception e) {         
             Bitacora.registrar(e);
+            System.out.println(e);
             throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
         }finally{
             try {

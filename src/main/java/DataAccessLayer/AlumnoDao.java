@@ -381,8 +381,46 @@ public class AlumnoDao {
         
         return alumnos;     
      }
+    
+    public ArrayList<Alumno> buscarPorGradoNivel(String grado, String nivel) throws Exception{
+     
+        ArrayList<Alumno>alumnos=new ArrayList<>();
+        Alumno alumno= new Alumno();
+        HistorialNotas hn = new HistorialNotas();
+        
+        Connection con=null;
+        CallableStatement cstm = null;  
+        ResultSet rs=null;
+        
+        try {            
+            con=UConnection.getConnection();
+            String sql="";            
+            sql="call sp_alumno_buscar_por_nivel_y_grado(?,?)";
+            cstm=con.prepareCall(sql);
+            cstm.setString(1, nivel);
+            cstm.setString(2, grado);
+         
+            rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
+            
+            while(rs.next()){
+                alumno = new Alumno();
+                
+                alumno.setApellidosNombres(rs.getString("nombres"));
+                alumnos.add(alumno);
+            }
+            
+        }catch (Exception e) {         
+            Bitacora.registrar(e);
+            System.out.println(e);
+            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
+        }finally{
+            try {
+                if(rs!=null)rs.close();
+                if(cstm!=null)cstm.close();                
+            } catch (Exception e) {
+                Bitacora.registrar(e);
+            }        
+        }  
+        return alumnos;     
+     }
 }
-
-
-
-

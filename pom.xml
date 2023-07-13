@@ -58,6 +58,12 @@
             <version>2.9.1</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.18.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     
     <build>

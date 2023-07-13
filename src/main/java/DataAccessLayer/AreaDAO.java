@@ -63,6 +63,52 @@ public class AreaDAO {
         return areas;
     }
 
+    
+    public ArrayList<Area> buscarPorArea(String cadena) throws Exception {
+
+        ArrayList<Area> areas = new ArrayList<>();
+        Area area = null;
+
+        Connection con = null;
+        CallableStatement cstm = null;
+        ResultSet rs = null;
+
+        try {
+            con = UConnection.getConnection();
+            String sql = "";
+            sql = "call sp_area_buscarPorArea(?)";
+            cstm = con.prepareCall(sql);
+            cstm.setString(1, cadena);
+
+            rs = cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
+
+            while (rs.next()) {
+                area = new Area();
+                area.setArea_id(rs.getInt("area_id"));
+                area.setArea_nombre(rs.getString("nombre"));
+
+                areas.add(area);
+            }
+
+        } catch (Exception e) {
+            Bitacora.registrar(e);
+            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (cstm != null) {
+                    cstm.close();
+                }
+            } catch (Exception e) {
+                Bitacora.registrar(e);
+            }
+        }
+        return areas;
+    }
+    
+    
     public void insertar(Area area) throws Exception {
 
         Connection con = null;
@@ -88,6 +134,8 @@ public class AreaDAO {
             if ( e.getMessage().contains("idx_area_nombre") ) {
                 throw new Exception("El Nombre ingresado ya existe en la base de datos"); 
             }
+            System.out.println("El error es este");
+            System.out.println(e);
             throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
         } finally {
             try {

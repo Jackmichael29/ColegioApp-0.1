@@ -25,6 +25,7 @@ C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessL
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\HistorialNotas.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\PRUEBA3.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\PRUEBA6.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Controllers\AsistenciaAlumnoController.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\AsistenciaAlumnoBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\AlumnoBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\pagoPensiones.java
@@ -37,6 +38,7 @@ C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Controllers\CursoController.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Utilities\Encriptador.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\DocenteCursoBO.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Controllers\NotaController.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\AsistenciaDocente.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\DocenteCurso.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\NotasBO.java

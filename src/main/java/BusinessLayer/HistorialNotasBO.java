@@ -58,6 +58,15 @@ public class HistorialNotasBO {
         }
     }
     
+    public HistorialNotas buscarPorId(int cadena) throws Exception{
+        try {
+            HistorialNotasDAO hisDAO = new HistorialNotasDAO();
+            return hisDAO.buscarPorId(cadena);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
     public ArrayList<HistorialNotas> historialNotasListar() throws Exception{
         try {
             HistorialNotasDAO hisDAO = new HistorialNotasDAO();

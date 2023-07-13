@@ -174,6 +174,71 @@ public class HistorialNotasDAO {
         return hnotas;     
      }
     
+    public HistorialNotas buscarPorId(int cadena) throws Exception{
+     
+        HistorialNotas hnotas = new HistorialNotas();
+        ArrayList<HistorialNotas> hnotasl = new ArrayList<>();
+        Notas notas=new Notas();
+        Alumno alumno = new Alumno();
+        Curso curso = new Curso();
+        
+        Connection con=null;
+        CallableStatement cstm = null;  
+        ResultSet rs=null;
+        
+        try {            
+            con=UConnection.getConnection();
+            String sql="";            
+            sql="call sp_historial_notas_buscar_id(?)";
+            cstm=con.prepareCall(sql);
+            cstm.setInt(1, cadena);
+         
+            rs=cstm.executeQuery(); //se puede usar .execute() para todas las operaciones         
+            
+            if(rs.next()){
+                hnotas = new HistorialNotas();
+                notas = new Notas();
+                alumno = new Alumno();
+                curso = new Curso();
+
+                hnotas.setHistorial_id(rs.getInt("historial_notas_id"));
+
+                notas.setHistorial_notas_id(rs.getInt("historial_notas_id"));
+                notas.setNota1(rs.getDouble("nota1"));
+                notas.setNota2(rs.getDouble("nota2"));
+                notas.setNota3(rs.getDouble("nota3"));
+                notas.setNota4(rs.getDouble("nota4"));
+                notas.setNota5(rs.getDouble("nota5"));
+
+                alumno.setAlumno_id(rs.getInt("alumno_id"));
+                alumno.setApellidosNombres(rs.getString("Apellidos y Nombres"));
+
+                curso.setCurso_id(rs.getInt("curso_id"));
+                curso.setNivel(rs.getString("nivel").charAt(0));
+                curso.setGrado(rs.getString("grado").charAt(0));
+                curso.setNombre(rs.getString("nombre"));
+
+                hnotas.setNota(notas);
+                hnotas.setCurso(curso);
+                hnotas.setAlumno(alumno);
+            }
+            
+        }catch (Exception e) {         
+            Bitacora.registrar(e);
+            System.out.println(e);
+            throw new Exception("Error crítico: Comunicarse con el administrador del sistema");
+        }finally{
+            try {
+                if(rs!=null)rs.close();
+                if(cstm!=null)cstm.close();                
+            } catch (Exception e) {
+                Bitacora.registrar(e);
+            }        
+        }        
+        return hnotas;     
+     }
+    
+    
     public HistorialNotas buscarPorCursoId(int cadena) throws Exception{
      
         HistorialNotas hnotas=new HistorialNotas();
