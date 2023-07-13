@@ -53,6 +53,7 @@ C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Controlle
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\pagoMatricula.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\DocenteBO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\MatriculaBO.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Controllers\AsistenciaDocenteSalidaController.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Connection\UConnection.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\AsistenciaAlumno.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\DocenteDAO.java
@@ -63,6 +64,7 @@ C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\MatriculaDAO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Controllers\ApoderadoController.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\MatriculaCurso.java
+C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\Controllers\AsistenciaDocenteIngresoController.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\JavaBean\PRUEBA4.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\DataAccessLayer\AsistenciaDocenteDAO.java
 C:\Users\xbest\Documents\NetBeansProjects\ColegioApp-0.1\src\main\java\BusinessLayer\ApoderadoBO.java
