@@ -161,7 +161,9 @@ public class AsistenciaDocenteController extends HttpServlet {
         LocalDate fecha = LocalDate.now();
         String usuario = request.getParameter("usuario");
         String contrasena = request.getParameter("contrasena");
-        System.out.println("aqui parce=== " + usuario + " @@ " + contrasena);
+        
+        ArrayList<AsistenciaDocente> docentes = asisdocbo.asistenciaDocenteListarPorHoy2();
+        
         if(usuario==null){
             System.out.println("usuario");
             usuario="";
@@ -180,19 +182,26 @@ public class AsistenciaDocenteController extends HttpServlet {
         }else{
             UsuarioBO ubo = new UsuarioBO();
             Usuario u = ubo.buscarPorDNI(usuario);
-            if(u==null){
+            if (u == null) {
                 errores.put("usuario", "El usuario no existe");
-            }else{
-                if(u.getClave().equals(enc.Encriptar(contrasena))){
-                    asdo.setDocente_id(dbo.buscarPorDNI(usuario).getDocente_id());
-                    asisdocbo.insertarIngreso(asdo);
-                }else{
-                    errores.put("usuario", "Credencial Incorrecta");
+            } else {
+                for (AsistenciaDocente aaad : docentes) {
+                    if (aaad.getDocente().getDni().equals(usuario)) {
+                        errores.put("usuario", "El usuario ya registro su ingreso");
+                        break;
+                    }
+                }
+                if (!errores.containsKey("usuario")) {
+                    if (u.getClave().equals(enc.Encriptar(contrasena))) {
+                        asdo.setDocente_id(dbo.buscarPorDNI(usuario).getDocente_id());
+                        asisdocbo.insertarIngreso(asdo);
+                    } else {
+                        errores.put("usuario", "Credencial Incorrecta");
+                    }
                 }
             }
-        }
         
-        ArrayList<AsistenciaDocente> docentes = asisdocbo.asistenciaDocenteListarPorHoy2();
+        }
         
         request.setAttribute("docentes", docentes);
         request.setAttribute("errores", errores);
