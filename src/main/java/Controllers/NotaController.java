@@ -182,13 +182,12 @@ public class NotaController extends HttpServlet {
 
         String grado = request.getParameter("grado");
         String nivel = request.getParameter("nivel");
-        String turno = request.getParameter("turno");
 
         Map<String, Object> params = new HashMap<String, Object>();
 
         params.put("grado", grado);
         params.put("nivel", nivel);
-        params.put("turno", turno);
+        
 
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=\"ReporteNotasPorAula.pdf\";");
@@ -248,36 +247,47 @@ public class NotaController extends HttpServlet {
     private void update(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, Exception {      
        
+        Map<String,String>errores = new HashMap<String, String>();
         
-           String[] matriculaId;
-           String[] notas;
-
-            matriculaId= request.getParameterValues("matriculaId");
-            notas= request.getParameterValues("notas");
+        NotasBO notaBO = new NotasBO();
+        Notas nota = new Notas();
+        
+        double nota1 = Double.parseDouble(request.getParameter("nota1"));
+        double nota2 = Double.parseDouble(request.getParameter("nota2"));
+        double nota3 = Double.parseDouble(request.getParameter("nota3"));
+        double nota4 = Double.parseDouble(request.getParameter("nota4"));
+        double nota5 = Double.parseDouble(request.getParameter("nota5"));
             
-            int  cursoId=Integer.valueOf(request.getParameter("cursoId"));            
-            int  bimestre=Integer.valueOf(request.getParameter("bimestre"));
+        int id = Integer.parseInt(request.getParameter("Id"));    
+        System.out.println("Look : {=" + id);
+        nota.setHistorial_notas_id(id);
+        nota.setNota1(nota1);
+        nota.setNota2(nota2);
+        nota.setNota3(nota3);
+        nota.setNota4(nota4);
+        nota.setNota5(nota5);
+        
+        if(nota.getErrores().isEmpty()){
+            notaBO.actualizar(nota);
+            getServletContext().getRequestDispatcher(PATH_LIST_COURSE).forward(request, response);
+        }else{
+            String val = request.getParameter("Id");
+            System.out.println(val);
+            if (val == null) {
+                val = "0";
+            }
+            int idHistorial = Integer.parseInt(val);
+            NotasBO ndao = new NotasBO();
+            Notas notas = ndao.buscarPorHistorialNotasId(idHistorial);
+            HistorialNotasBO hnotasbo = new HistorialNotasBO();
+            HistorialNotas hnotita = hnotasbo.buscarPorId(idHistorial);
+            System.out.println("hnotita: " + hnotita.getAlumno().getApellidosNombres());
+            request.setAttribute("notas", notas);
+            request.setAttribute("hnotita", hnotita);
             
-            
-            
-       
-        
-        
-//        Map<String,String>errores= alumno.getErrores();
-//                   
-//        if(errores.isEmpty()){                
-//           AlumnoBO alumnoBO= new AlumnoBO(); 
-//           alumnoBO.actualizar(alumno);
-//           request.setAttribute("mensaje", "El registro fué actualizado con éxito"); 
-//           getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);
-//        }else{
-//            request.setAttribute("alumno", alumno);
-//            request.setAttribute("errores", errores);            
-//            
-//            getServletContext().getRequestDispatcher(PATH_FORM_EDIT).forward(request, response);
-//        }        
-        
-        
+            request.setAttribute("errores", nota.getErrores());
+            getServletContext().getRequestDispatcher(PATH_FORM_EDIT).forward(request, response);
+        }       
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response)
@@ -289,11 +299,5 @@ public class NotaController extends HttpServlet {
         alumnoBO.eliminar(id);
         request.setAttribute("mensaje", "El registro fué eliminado con éxito"); 
         getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);        
-
     }
-    
-    
-
-    
-    
 }

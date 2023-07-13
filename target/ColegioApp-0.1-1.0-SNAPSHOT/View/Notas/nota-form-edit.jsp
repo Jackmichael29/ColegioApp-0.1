@@ -29,26 +29,41 @@ import= "JavaBean.Alumno, java.util.ArrayList"
             
             <div class="row">
                 
-                <form action="${pageContext.request.contextPath}/Nota?action=update" method="post">
-                    <div>
+                <form action="${pageContext.request.contextPath}/Nota?action=update&Id=${hnotita.historial_id}" method="post">
+                    <div div class="mb-3">
                         1er Bimestre
                         <input type="text" name="nota1" id="nota1" value="${notas.nota1}" autocomplete="off" class="form-control"/> 
+                        <c:if test="${errores != null && not empty errores.nota1}">
+                            <div style="color:red;">${errores.nota1}</div>
+                        </c:if>
                     </div>
-                    <div>
+                    <div div class="mb-3">
                         2do Bimestre
                         <input type="text" name="nota2" id="nota2" value="${notas.nota2}" autocomplete="off" class="form-control"/> 
+                        <c:if test="${errores != null && not empty errores.nota2}">
+                            <div style="color:red;">${errores.nota2}</div>
+                        </c:if>
                     </div>
-                    <div>
+                    <div div class="mb-3">
                         3er Bimestre
                         <input type="text" name="nota3" id="nota3" value="${notas.nota3}" autocomplete="off" class="form-control"/> 
+                        <c:if test="${errores != null && not empty errores.nota3}">
+                            <div style="color:red;">${errores.nota3}</div>
+                        </c:if>
                     </div>
-                    <div>
+                    <div div class="mb-3">
                         4to Bimestre
                         <input type="text" name="nota4" id="nota4" value="${notas.nota4}" autocomplete="off" class="form-control"/> 
+                        <c:if test="${errores != null && not empty errores.nota4}">
+                            <div style="color:red;">${errores.nota4}</div>
+                        </c:if>
                     </div>
-                    <div>
+                    <div div class="mb-3">
                         Comportamiento
                         <input type="text" name="nota5" id="nota5" value="${notas.nota5}" autocomplete="off" class="form-control"/> 
+                        <c:if test="${errores != null && not empty errores.nota5}">
+                            <div style="color:red;">${errores.nota5}</div>
+                        </c:if>
                     </div>
 
                     <div class="mb-3">                                
