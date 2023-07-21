@@ -99,4 +99,14 @@ public class AlumnoBO {
             throw e;
         }
     }
+    
+    public ArrayList<Alumno> buscarPorGradoNivel(String grado, String nivel) throws Exception {
+
+        try {
+            AlumnoDao alumnoDAO = new AlumnoDao();
+            return alumnoDAO.buscarPorGradoNivel(grado, nivel);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }

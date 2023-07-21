@@ -5,11 +5,13 @@
 package Controllers;
 
 import BusinessLayer.DocenteBO;
+import Connection.UConnection;
 import JavaBean.Docente;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +21,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 
 /**
  *
@@ -68,7 +80,10 @@ public class DocenteController extends HttpServlet {
                 case "delete":
                     delete(request, response);
                     break;                           
-            }
+                case "reportes":
+                    reporteDocentes(request, response);
+                    break;                           
+                }
             } catch (Exception e) {
                 throw new ServletException(e);
             }   
@@ -198,6 +213,34 @@ public class DocenteController extends HttpServlet {
         docenteBO.eliminar(id);
         request.setAttribute("mensaje", "El registro fué eliminado con éxito"); 
         getServletContext().getRequestDispatcher(PATH_RESULT).forward(request, response);        
+
+    }
+    
+    private void reporteDocentes(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, JRException, Exception {
+
+        String url = getServletContext().getRealPath("/View/Resources/img/logoHD.png");
+
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        params.put("url", url);
+        
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=\"ReporteDocentes.pdf\";");
+
+        String pathReporte = getServletContext().getRealPath("/View/Reportes/ReporteDocente.jasper");
+        JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(pathReporte);
+
+        ServletOutputStream out = response.getOutputStream();
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, params, UConnection.getConnection());
+        JRPdfExporter exporter = new JRPdfExporter();
+        exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+        exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(out));
+        SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+        exporter.setConfiguration(configuration);
+        exporter.exportReport();
 
     }
     

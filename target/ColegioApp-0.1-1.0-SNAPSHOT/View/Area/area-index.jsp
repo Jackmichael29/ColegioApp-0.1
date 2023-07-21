@@ -36,7 +36,7 @@ import= "JavaBean.Area, java.util.ArrayList"
                 <!-- ("areaNombre") -->
         <form action="${pageContext.request.contextPath}/Area?action=index" method="post">
             <label for="areaNombre" class="form-label">Nombre</label>
-            <input type="text" name="areaNombre" id="areaNombre" value="" autocomplete="off" class="form-control"/>
+            <input class="textoBuscar" type="text" name="nombreArea" id="nombreArea" value=" " autocomplete="off" class="form-control"/>
 
             <input type="submit" value="Buscar" class="btn btn-secondary">
 

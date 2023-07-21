@@ -14,10 +14,20 @@ import java.util.Map;
  */
 public class pagoPensiones {
     
-    private int pago_pensiones_id;
+    private int pago_id;
     private LocalDate fecha;
     private double monto;
     private String observacion;
+    
+    private int tipo;
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
     
     private int alumno_id;
     
@@ -34,12 +44,12 @@ public class pagoPensiones {
     public pagoPensiones(){
     }
 
-    public int getPago_pensiones_id() {
-        return pago_pensiones_id;
+    public int getPago_id() {
+        return pago_id;
     }
 
-    public void setPago_pensiones_id(int pago_pensiones_id) {
-        this.pago_pensiones_id = pago_pensiones_id;
+    public void setPago_id(int pago_id) {
+        this.pago_id = pago_id;
     }
 
     public LocalDate getFecha() {
